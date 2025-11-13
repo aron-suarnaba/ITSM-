@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function login(Request $request){
         $credentials = ([
-            'email' => 'required|max:255',
+            'email' => 'required|email|max:255',
             'password' => 'required',
         ]);
 
@@ -42,7 +42,7 @@ class UserController extends Controller
         if(Auth::attempt($credentials, $remember)){
             $request->session()->regenerate();
 
-            return redirect()->intended('/home');
+            return redirect()->intended('home');
         }
 
 
