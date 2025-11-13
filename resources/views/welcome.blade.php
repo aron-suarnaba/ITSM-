@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    @include('partials._header')
+    @include('partials._nav')
 @endsection
 
 @section('content')
