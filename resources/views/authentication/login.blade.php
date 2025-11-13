@@ -2,9 +2,10 @@
     <div class="container container-tight py-4">
         <div class="text-center mb-4">
             <!-- BEGIN NAVBAR LOGO -->
-             <a href="." aria-label="Tabler" class="navbar-brand navbar-brand-autodark d-flex justify-content-center align-items-center" >
-                <svg xmlns="http://www.w3.org/2000/svg" style="width: 2.5rem; height: 2.5rem;" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            <a href="." aria-label="Tabler"
+                class="navbar-brand navbar-brand-autodark d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" style="width: 2.5rem; height: 2.5rem;" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="icon icon-tabler icons-tabler-outline icon-tabler-devices-pc">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M3 5h6v14h-6z" />
@@ -19,11 +20,15 @@
         </div>
         <div class="card card-md">
             <div class="card-body">
+
+
+
                 <h2 class="h2 text-center mb-4">Login to your account</h2>
-                <form action="./" method="get" autocomplete="off" novalidate="">
+                <form action="{{ route('login.submit') }}" method="get" autocomplete="off" novalidate="">
                     <div class="mb-3">
                         <label class="form-label">Email address</label>
-                        <input type="email" id="user_email" name="email" class="form-control" placeholder="your@email.com" autocomplete="off">
+                        <input type="email" id="user_email" name="email" class="form-control"
+                            placeholder="your@email.com" autocomplete="off">
                     </div>
                     <div class="mb-2">
                         <label class="form-label">
@@ -33,7 +38,8 @@
                             </span>
                         </label>
                         <div class="input-group input-group-flat">
-                            <input type="password" class="form-control" id="user_password" name="password" placeholder="Your password" autocomplete="off">
+                            <input type="password" class="form-control" id="user_password" name="password"
+                                placeholder="Your password" autocomplete="off">
                             <span class="input-group-text">
                                 <a href="#" class="link-secondary" data-bs-toggle="tooltip" aria-label="Show password"
                                     data-bs-original-title="Show password"><!-- Download SVG icon from http://tabler.io/icons/icon/eye -->

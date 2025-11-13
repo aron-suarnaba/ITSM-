@@ -1,7 +1,7 @@
-@extends('components.layouts.app')
+@extends('layouts.app')
 
 @section('content')
-    @include('authentication.login')
+    @include('content.blade')
 @endsection
 
 

@@ -7,15 +7,14 @@ use Livewire\Attributes\Layout;
 
 class GuestShell extends Component
 {
-
-    protected static $layout = 'layouts.app';
+    #[Layout('layouts.app')]
 
     public $currentView = 'welcome';
 
-    public function switchToView($viewName){
+    public function switchToView($viewName)
+    {
         $this->currentView = $viewName;
     }
-
 
     public function render()
     {

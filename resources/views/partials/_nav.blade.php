@@ -1,8 +1,8 @@
 <header class="navbar navbar-expand-lg navbar-transparent py-3">
     <div class="container">
         <!-- BEGIN NAVBAR LOGO -->
-        <a wire:click="switchToView('welcome')" aria-label="Tabler" class="navbar-brand navbar-brand-autodark"><svg
-                xmlns="http://www.w3.org/2000/svg" style="width: 2.5rem; height: 2.5rem;" viewBox="0 0 24 24"
+        <a wire:click.prevent="switchToView('welcome')" aria-label="Tabler" class="navbar-brand navbar-brand-autodark" style="cursor: pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" style="width: 2.5rem; height: 2.5rem;" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-devices-pc">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -20,27 +20,28 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <nav class="navbar-nav ms-auto">
-                <div class="nav-item">
-                    <a wire:click="{{ $livewireComponent->getId() }} $wire.switchToView('welcome')" class="nav-link {{ $currentView === 'welcome' ? 'active' : '' }}">
+            @php $cv = $currentView ?? null; @endphp
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="#" wire:click.prevent="switchToView('welcome')" class="nav-link {{ $cv === 'welcome' ? 'active' : '' }}">
                         <span class="nav-link-title">Home</span>
                     </a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link {{ $currentView === 'welcome' ? 'active' : '' }}" wire:click="{{ $livewireComponent->getId() }} $wire.switchToView('login')">
+                </li>
+                <li class="nav-item">
+                    <a href="#" wire:click.prevent="switchToView('login')" class="nav-link {{ $cv === 'login' ? 'active' : '' }}">
                         <span class="nav-link-title">Login</span>
                     </a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="../marketing/pricing.html"><span class="nav-link-title">About</span></a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="../marketing/about.html"><span class="nav-link-title">Contact</span></a>
-                </div>
-                <div class="nav-item ms-4">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="nav-link-title">About</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="nav-link-title">Contact</span></a>
+                </li>
+                <li class="nav-item ms-4">
                     <a href="#" class="btn btn-primary">Buy now</a>
-                </div>
-            </nav>
+                </li>
+            </ul>
         </div>
     </div>
 </header>
