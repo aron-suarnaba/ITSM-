@@ -2,8 +2,8 @@
     <div class="container container-tight py-4">
         <div class="text-center mb-4">
             <!-- BEGIN NAVBAR LOGO -->
-             <a href="." aria-label="Tabler" class="navbar-brand navbar-brand-autodark">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 24 24" fill="none"
+             <a href="." aria-label="Tabler" class="navbar-brand navbar-brand-autodark d-flex justify-content-center align-items-center" >
+                <svg xmlns="http://www.w3.org/2000/svg" style="width: 2.5rem; height: 2.5rem;" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="icon icon-tabler icons-tabler-outline icon-tabler-devices-pc">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -14,7 +14,7 @@
                     <path d="M6 13v.01" />
                     <path d="M6 16v.01" />
                 </svg>
-                ITSM+
+                <span style="width: 2.5rem; height: 2.5rem;" class="d-flex align-items-center fs-1 fw-bold">ITSM+</span>
             </a><!-- END NAVBAR LOGO -->
         </div>
         <div class="card card-md">
