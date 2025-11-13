@@ -9,11 +9,17 @@
 
     @livewireStyles
 </head>
+<body>
 
+    <div class="page">
 
+        @yield('header')
 
         @yield('content')
 
+        @yield('footer')
+
+    </div>
 
     @livewireScripts
 </body>

@@ -1,8 +1,4 @@
-@extends('layouts.app')
-
-@section('header')
-    @include('partials._nav')
-@endsection
+@extends('components.layouts.app')
 
 @section('content')
     @include('authentication.login')
