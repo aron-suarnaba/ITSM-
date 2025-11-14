@@ -17,6 +17,8 @@ Route::post('/login', [UserController::class, 'login'])
     ->name('login.submit');
 
 Route::middleware('auth')->group(function(){
-    Route::get('/layouts/home', HomeShell::class)
+    Route::get('/home', HomeShell::class)
     ->name('home');
+
+
 });
