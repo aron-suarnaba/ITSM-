@@ -14,7 +14,7 @@ class HomeShell extends Component
 
     public function switchToPage($pageName)
     {
-        $this->$currentPage = $pageName;
+        $this->currentPage = $pageName;
     }
 
     public function render()

@@ -1,4 +1,4 @@
-<div class="page livewire-guest-shell-wrapper">
+<div class="page livewire-home-shell-wrapper">
     @include('partials._header')
 
     <div class="page-wire">
