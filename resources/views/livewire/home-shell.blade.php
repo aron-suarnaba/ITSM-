@@ -3,9 +3,7 @@
     @include('partials._header')
 
     <div class="page-wrapper">
-        <div class="page-body">
             @include('content.request')
-        </div>
     </div>
 
     @include('partials._footer')
