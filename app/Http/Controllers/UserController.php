@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
@@ -24,31 +24,34 @@ class UserController extends Controller
 
 
     public function showLoginForm(){
-        if(Auth::check()){
-            return redirect('/home');
+        if(\Auth::check()){
+            return redirect(route('home'));
         }
 
-        return view('authentication.login');
+        return redirect(route('home'));
     }
 
     public function login(Request $request){
-        $credentials = ([
+        $validatedData = $request->validate([
             'email' => 'required|email|max:255',
             'password' => 'required',
         ]);
 
         $remember = $request->boolean('remember');
 
-        if(Auth::attempt($credentials, $remember)){
+        if (Auth::attempt(['email' => $validatedData['email'], 'password' => $validatedData['password']], $remember)) {
             $request->session()->regenerate();
 
+            // redirect to intended url or home route
             return redirect()->intended(route('home'));
         }
 
+        // Log failed attempt and return back with error and old input
+        \Log::warning('Login failed for email: ' . $validatedData['email']);
 
-        throw ValidationException::withMessages([
-            'email' => [trans('auth.failed')]
-        ]);
+        return back()
+            ->withErrors(['email' => trans('auth.failed')])
+            ->withInput($request->except('password'));
     }
 
     public function logout(Request $request){

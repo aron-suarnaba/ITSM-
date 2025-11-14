@@ -10,7 +10,7 @@ class HomeShell extends Component
 {
     #[Layout('layouts.home')]
 
-    public $currentPage = 'dashboard';
+    public $currentPage = 'welcome';
 
     public function switchToPage($pageName)
     {

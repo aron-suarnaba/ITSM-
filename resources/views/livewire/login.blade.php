@@ -22,22 +22,16 @@
             <div class="card-body">
 
                 <h2 class="h2 text-center mb-4">Login to your account</h2>
-                <form action="{{ route('login.post') }}" method="post" autocomplete="off" novalidate="">
+                <form wire:submit.prevent="login.submit" method="post" autocomplete="off" novalidate="">
                     @csrf
-
-                    @if ($errors->has('email'))
-                        <div class="alert alert-danger">
-                            {{ $errors->first('email') }}
-                        </div>
-                    @endif
-
                     <div class="mb-3">
                         <label class="form-label">Email address</label>
-                        <input type="email" id="user_email" name="email"
-                            class="form-control @error('email') is-invalid @enderror" placeholder="your@email.com"
-                            autocomplete="off">
+                        <input type="email" id="user_email" wire:model="email" class="form-control @error('email') is-invalid
+                        @enderror " placeholder="your@email.com" autocomplete="off">
                         @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
                         @enderror
                     </div>
                     <div class="mb-2">
@@ -49,7 +43,7 @@
                         </label>
                         <div class="input-group input-group-flat">
                             <input type="password" class="form-control @error('password') is-invalid
-                            @enderror " id="user_password" name="password" placeholder="Your password"
+                            @enderror" id="user_password" wire:model="password" placeholder="Your password"
                                 autocomplete="off">
                             @error('password')
                                 <div class="invalid-feedback">
@@ -72,12 +66,22 @@
                     </div>
                     <div class="mb-2">
                         <label class="form-check">
-                            <input type="checkbox" name="remember" class="form-check-input">
+                            <input type="checkbox" wire:model="remember" class="form-check-input">
                             <span class="form-check-label">Remember me on this device</span>
                         </label>
                     </div>
                     <div class="form-footer">
                         <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                            <div class="text-center" wire:loading wire:target="login">
+                                <div class="mb-3">
+                                    <a href="." class="navbar-brand navbar-brand-autodark"><img
+                                            src="./static/logo-small.svg" height="36" alt=""></a>
+                                </div>
+                                <div class="text-secondary mb-3">Preparing application</div>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar progress-bar-indeterminate"></div>
+                                </div>
+                            </div>
                     </div>
                 </form>
             </div>

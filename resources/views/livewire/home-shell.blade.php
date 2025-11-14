@@ -1,12 +1,11 @@
 <div class="page livewire-home-shell-wrapper">
+    @include('partials._aside')
     @include('partials._header')
 
     <div class="page-wire">
 
-        @if ($currentView === 'welcome')
+        @if ($currentPage === 'dashboard')
             @include('components.maintenance-page')
-        @elseif ($currentView === 'login')
-            @include('authentication.login')
         @endif
 
     </div>

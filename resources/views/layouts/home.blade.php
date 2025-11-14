@@ -13,7 +13,7 @@
 
 <body>
 
-    {{ $slots }}
+    {{ $slot }}
 
     @livewireScripts
 </body>
