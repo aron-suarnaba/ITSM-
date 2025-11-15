@@ -7,16 +7,15 @@ import { Button } from "bootstrap/dist/js/bootstrap.bundle.js";
 window.bootstrap = bootstrap;
 
 document.addEventListener("DOMContentLoaded", () => {
-    const NavigationLink = document.querySelectorAll(".nav-links");
-
+    // --- Element Selection ---
     const RequestCatSelect = document.getElementById("requestCategorySelect");
     const RequestCatButton = document.querySelectorAll(".RequestCatButton");
-
     const requestDetailSelect = document.getElementById("requestDetailSelect");
-    const requestDetailSelectContainer = document.getElementById(
+    const requestDetailsContainer = document.getElementById(
         "requestDetailsContainer"
     );
-    const RequestTypeInput = document.getElementById("RequestTypeSelect");
+    const RequestTypeSelect = document.getElementById("RequestTypeSelect"); // Assuming RequestTypeInput should be RequestTypeSelect
+    const NavigationLink = document.querySelectorAll(".nav-links"); // Added element selection
 
     const TechnicalSupportReqDet = [
         "Programs/Application Installation/Re-Install",
@@ -48,17 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Others",
     ];
 
-    // *****function*****
-    NavigationLink.forEach((item) => {
-        item.addEventListener("click", (event) => {
-            NavigationLink.forEach((el) => {
-                el.classList.remove("active");
-            });
-
-            event.target.classList.add("active");
-        });
-    });
-
+    // --- Helper Function ---
     function clearAndResetSelect(selectElement, placeholderText = "Options") {
         selectElement.innerHTML = "";
         const defaultOption = document.createElement("option");
@@ -69,31 +58,80 @@ document.addEventListener("DOMContentLoaded", () => {
         selectElement.appendChild(defaultOption);
     }
 
+    // 1. Logic for Category Buttons (Modal opener)
+    RequestCatButton.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const buttonText = btn.textContent.trim();
+
+            // Set the value of the category dropdown
+            RequestCatSelect.value = buttonText;
+
+            // 🎯 CRITICAL: Manually trigger the change event on the select box
+            RequestCatSelect.dispatchEvent(new Event("change"));
+
+            // The modal opens automatically via data-bs-toggle/data-bs-target
+        });
+    });
+
+    // 2. Logic for Category Select Box (Visibility and Population)
     RequestCatSelect.addEventListener("change", function () {
         const selectedValue = this.value;
+
+        // Ensure Request Details dropdown and its options are cleared by default
+        clearAndResetSelect(requestDetailSelect, "Select Request Detail");
 
         if (selectedValue === "Software & Applications") {
             // 1. SHOW the container
             requestDetailsContainer.classList.remove("d-none");
 
-            // 2. Clear and populate the Request Details select box
-            clearAndResetSelect(requestDetailSelect, "Select Request Detail");
-
+            // 2. Populate the Request Details select box
             SoftwareDeveloperReqDet.forEach((request) => {
                 const newOption = document.createElement("option");
                 newOption.value = request;
                 newOption.textContent = request;
                 requestDetailSelect.appendChild(newOption);
             });
-        } else {
-            // 1. HIDE the container for all other selections
+
+            SoftwareDeveloperReqServ.forEach((request)=>{
+                const newOption = document.createElement("option");
+                newOption.value = request;
+                newOption.textContent = request;
+                RequestTypeSelect.appendChild(newOption);
+            });
+
+            // Note: You may want to add logic here to populate RequestTypeSelect as well.
+        } else if (selectedValue === "Technical Support") {
+
             requestDetailsContainer.classList.add("d-none");
 
-            // 2. Clear the contents when hiding
-            clearAndResetSelect(requestDetailSelect, "Options");
+            TechnicalSupportReqDet.forEach((request) => {
+                const newOption = document.createElement("option");
+                newOption.value = request;
+                newOption.textContent = request;
+                RequestTypeSelect.appendChild(newOption);
+            });
+
+        }
+
+        else {
+            // 1. HIDE the container for all other selections (Technical Support, Others)
+            requestDetailsContainer.classList.add("d-none");
+
+            // Optional: You could add logic here to populate requestDetailSelect
+            // with TechnicalSupportReqDet options if selectedValue is "Technical Support"
         }
     });
 
-    // Optional: If you also want the initial state to be correct on page load
+    // 3. Initial state setting
     requestDetailsContainer.classList.add("d-none");
+
+    // (Kept for completeness, though separate from the main issue)
+    NavigationLink.forEach((item) => {
+        item.addEventListener("click", (event) => {
+            NavigationLink.forEach((el) => {
+                el.classList.remove("active");
+            });
+            event.target.classList.add("active");
+        });
+    });
 });

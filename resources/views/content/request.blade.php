@@ -59,7 +59,7 @@
                                         <th>JR-S1125-S0001</th>
                                         <th>ERP</th>
                                         <th>2025-11-15</th>
-                                        <th><span class="badge text-bg-info">Approved</span></th>
+                                        <th>  <span class="badge bg-azure text-azure-fg">Approved</span></th>
                                     </tr>
                                 </tbody>
                             </table>
