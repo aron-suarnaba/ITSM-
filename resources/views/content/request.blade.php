@@ -76,69 +76,75 @@
 
 <!-- modals -->
 <div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-lg" role="document">
+    <div class="modal-dialog modal-dialog-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="#requestModalTitle">Request</h5>
+                <button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+                </button>
             </div>
-            <button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal">
-            </button>
+
+            <div class="modal-body bg-body-tertiary">
+                <div class="row mb-3">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-label">Request Category</div>
+                        <select class="form-select" id="requestCategorySelect">
+                            <option value="Technical Support">Technical Support</option>
+                            <option value="Software & Applications">Software & Applications</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 d-none" id="requestDetailsContainer">
+                        <label for="requestDetailSelect" class="form-label" required>Request Details</label>
+                        <select class="form-select" id="requestDetailSelect">
+                            <option value="" disabled selected>Options</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-12 col-md-12">
+                        <label for="RequestTypeSelect" class="form-label" required>Request Type</label>
+                        <select class="form-select" id="RequestTypeSelect">
+                            <option value="" disabled>Options</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-12 col-md-6">
+                        <label for="TicketNo" class="form-label">Ticket No.</label>
+                        <input type="text" id="TicketNo" class="form-control" required>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="TicketNo" class="form-label">Date Needed</label>
+                        <input type="date" id="TicketNo" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-12 col-md-12">
+                        <label for="DetailedDescription" class="form-label">Detailed Description of Request</label>
+                        <textarea name="" rows="5" id="DetailedDescription" class="form-control"
+                            placeholder="Type Here"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                    Cancel </a>
+                <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+                    <!-- Download SVG icon from http://tabler.io/icons/icon/plus -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-1">
+                        <path d="M12 5l0 14" />
+                        <path d="M5 12l14 0" />
+                    </svg>
+                    Generate Ticket
+                </a>
+            </div>
         </div>
 
-        <div class="modal-body bg-body-tertiary">
-            <div class="row mb-3">
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-label" required>Request Category</div>
-                    <select class="form-select" id="requestCategorySelect">
-                        <option value="Technical Support">Technical Support</option>
-                        <option value="Software & Applications">Software & Applications</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <label for="RequestDetails" class="form-label" required>Request Details</label>
-                    <select class="form-select" id="requestDetailsSelect">
-                        <option value="">Options</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm-12 col-md-12">
-                    <label for="RequestType" class="form-label" required>Request Type</label>
-                    <input type="text" id="RequestType" class="form-control" required>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm-12 col-md-6">
-                    <label for="TicketNo" class="form-label">Ticket No.</label>
-                    <input type="text" id="TicketNo" class="form-control" required>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <label for="TicketNo" class="form-label">Date Needed</label>
-                    <input type="date" id="TicketNo" class="form-control" required>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm-12 col-md-12">
-                    <label for="DetailedDescription" class="form-label">Detailed Description of Request</label>
-                    <textarea name="" rows="5" id="DetailedDescription" class="form-control"
-                        placeholder="Type Here"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
-                Cancel </a>
-            <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
-                <!-- Download SVG icon from http://tabler.io/icons/icon/plus -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon icon-1">
-                    <path d="M12 5l0 14" />
-                    <path d="M5 12l14 0" />
-                </svg>
-                Generate Ticket
-            </a>
-        </div>
+
     </div>
 </div>
