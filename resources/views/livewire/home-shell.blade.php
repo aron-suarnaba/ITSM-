@@ -3,8 +3,11 @@
     @include('partials._header')
 
     <div class="page-wrapper">
-            @include('content.request')
+        @include('content.request')
     </div>
 
+
     @include('partials._footer')
+
 </div>
+
