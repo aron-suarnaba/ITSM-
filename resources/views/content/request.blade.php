@@ -75,13 +75,12 @@
 </div>
 
 <!-- modals -->
-<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalTitle" aria-hidden="true">
+<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalTitle">
     <div class="modal-dialog modal-dialog-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="#requestModalTitle">Request</h5>
-                <button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal">
-                </button>
+                <h5 class="modal-title" id="requestModalTitle">Request</h5>
+                <button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <div class="modal-body bg-body-tertiary">
@@ -105,7 +104,7 @@
 
                 <div class="row mb-3">
                     <div class="col-sm-12 col-md-12">
-                        <label for="RequestTypeSelect" class="form-label" required>Request Type</label>
+                        <label for="RequestTypeSelect" class="form-label" id="Reques" required>Request Type</label>
                         <select class="form-select" id="RequestTypeSelect">
                             <option value="" disabled>Options</option>
                         </select>

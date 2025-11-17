@@ -2,23 +2,20 @@ import "./bootstrap";
 import * as bootstrap from "bootstrap";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import "@tabler/core/dist/js/tabler.min.js";
-import { Button } from "bootstrap/dist/js/bootstrap.bundle.js";
 
 window.bootstrap = bootstrap;
 
 document.addEventListener("DOMContentLoaded", () => {
     // --- Element Selection ---
-    const requestModal = document.getElementById("requestModal"); // New: Select the modal element
+    const requestModal = document.getElementById("requestModal");
     const RequestCatSelect = document.getElementById("requestCategorySelect");
     const RequestCatButton = document.querySelectorAll(".RequestCatButton");
     const requestDetailSelect = document.getElementById("requestDetailSelect");
-    const requestDetailsContainer = document.getElementById(
-        "requestDetailsContainer"
-    );
+    const requestDetailsContainer = document.getElementById("requestDetailsContainer");
     const RequestTypeSelect = document.getElementById("RequestTypeSelect");
     const NavigationLink = document.querySelectorAll(".nav-links");
 
-    // --- Data Arrays (for context, not modified) ---
+    // --- Data Arrays ---
     const TechnicalSupportReqDet = [
         "Programs/Application Installation/Re-Install",
         "Peripheral Devices/Replacement",
@@ -49,6 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
         "Others",
     ];
 
+    // Initialize modal instance
+    let modalInstance = null;
+    if (requestModal) {
+        modalInstance = new bootstrap.Modal(requestModal, { backdrop: true });
+    }
+
     // --- Helper Function ---
     function clearAndResetSelect(selectElement, placeholderText = "Options") {
         selectElement.innerHTML = "";
@@ -60,35 +63,37 @@ document.addEventListener("DOMContentLoaded", () => {
         selectElement.appendChild(defaultOption);
     }
 
-    // --- New: Modal Close Event Listener ---
+    // --- Modal Close Event Listener ---
     if (requestModal) {
-        requestModal.addEventListener('hidden.bs.modal', function () {
+        requestModal.addEventListener("hide.bs.modal", function (event) {
+            // Move focus before modal becomes hidden
+            const trigger = document.querySelector('[data-bs-target="#requestModal"]');
+            if (trigger && typeof trigger.focus === "function") {
+                trigger.focus();
+            }
+        });
 
-            // 🎯 Clear and reset all dynamic select boxes
-            clearAndResetSelect(RequestCatSelect, "Select Request Category");
+        requestModal.addEventListener("hidden.bs.modal", function (event) {
+            // Clear and reset all dynamic select boxes
             clearAndResetSelect(requestDetailSelect, "Select Request Detail");
             clearAndResetSelect(RequestTypeSelect, "Select Request Type");
 
             // Hide the conditional container
             requestDetailsContainer.classList.add("d-none");
 
-            // Optional: You may also want to clear any text inputs here
-            document.getElementById('TicketNo').value = '';
-            document.getElementById('DetailedDescription').value = '';
-            // Note: The Date Needed input might also need to be cleared/reset.
+            // Clear inputs
+            const ticketInput = document.getElementById("TicketNo");
+            if (ticketInput) ticketInput.value = "";
+            const desc = document.getElementById("DetailedDescription");
+            if (desc) desc.value = "";
         });
     }
-    // ------------------------------------
 
     // 1. Logic for Category Buttons (Modal opener)
     RequestCatButton.forEach(function (btn) {
         btn.addEventListener("click", function () {
             const buttonText = btn.textContent.trim();
-
-            // Set the value of the category dropdown
             RequestCatSelect.value = buttonText;
-
-            // Manually trigger the change event on the select box
             RequestCatSelect.dispatchEvent(new Event("change"));
         });
     });
@@ -97,15 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
     RequestCatSelect.addEventListener("change", function () {
         const selectedValue = this.value;
 
-        // Clear Request Details dropdown and Request Type dropdown first
         clearAndResetSelect(requestDetailSelect, "Select Request Detail");
         clearAndResetSelect(RequestTypeSelect, "Select Request Type");
 
         if (selectedValue === "Software & Applications") {
-            // SHOW Request Details container
             requestDetailsContainer.classList.remove("d-none");
 
-            // Populate Request Details
             SoftwareDeveloperReqDet.forEach((request) => {
                 const newOption = document.createElement("option");
                 newOption.value = request;
@@ -113,38 +115,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 requestDetailSelect.appendChild(newOption);
             });
 
-            // Populate Request Type
-            SoftwareDeveloperReqServ.forEach((request)=>{
+            SoftwareDeveloperReqServ.forEach((request) => {
                 const newOption = document.createElement("option");
                 newOption.value = request;
                 newOption.textContent = request;
                 RequestTypeSelect.appendChild(newOption);
             });
-
         } else if (selectedValue === "Technical Support") {
-
-            // HIDE Request Details container
             requestDetailsContainer.classList.add("d-none");
 
-            // Populate Request Type with Technical Support details
             TechnicalSupportReqDet.forEach((request) => {
                 const newOption = document.createElement("option");
                 newOption.value = request;
                 newOption.textContent = request;
                 RequestTypeSelect.appendChild(newOption);
             });
-
         } else {
-            // HIDE the Request Details container for "Others" or default state
             requestDetailsContainer.classList.add("d-none");
-            // RequestTypeSelect is already cleared at the beginning of this function
         }
     });
 
     // 3. Initial state setting
     requestDetailsContainer.classList.add("d-none");
 
-    // (Navigation Link logic)
+    // Navigation Link logic
     NavigationLink.forEach((item) => {
         item.addEventListener("click", (event) => {
             NavigationLink.forEach((el) => {

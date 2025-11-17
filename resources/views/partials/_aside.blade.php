@@ -40,7 +40,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#helpdeskAndTicketing" aria-expanded="false"
+                        aria-controls="helpdeskAndTicketing">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="icon icon-tabler icons-tabler-outline icon-tabler-devices-pc me-2">
@@ -54,6 +55,19 @@
                         </svg>
                         <span class="nav-link-title"> Helpdesk & Ticketing </span>
                     </a>
+                    <div class="collapse" id="helpdeskAndTicketing">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Request</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Incidents</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Ticket Life Cycle</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">

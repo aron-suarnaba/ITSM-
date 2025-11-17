@@ -22,15 +22,6 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
-
-    public function showLoginForm(){
-        if(\Auth::check()){
-            return redirect(route('home'));
-        }
-
-        return redirect(route('home'));
-    }
-
     public function login(Request $request){
         $validatedData = $request->validate([
             'email' => 'required|email|max:255',
@@ -42,8 +33,8 @@ class UserController extends Controller
         if (Auth::attempt(['email' => $validatedData['email'], 'password' => $validatedData['password']], $remember)) {
             $request->session()->regenerate();
 
-            // redirect to intended url or home route
-            return redirect()->intended(route('home'));
+            // Redirect to the home route
+            return redirect()->route('home');
         }
 
         // Log failed attempt and return back with error and old input
