@@ -18,10 +18,17 @@ Route::post('/login', [UserController::class, 'login'])
 Route::get('/logout', [UserController::class, 'logout'])
     ->name('logout');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/home', HomeShell::class)
-//         ->name('home');
-// });
+Route::middleware('auth')->group(function () {
+    Route::get('/home', HomeShell::class)
+        ->name('home');
+});
 
-Route::get('/home', HomeShell::class)
-    ->name('home');
+// Route::get('/home', HomeShell::class)
+//     ->name('home');
+
+Route::get('/check-session', function() {
+    if (Auth::check()) {
+        return 'You are logged in as ' . Auth::user()->email;
+    }
+    return 'Not logged in.';
+})->name('check.session');

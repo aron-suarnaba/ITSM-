@@ -31,6 +31,8 @@ class UserController extends Controller
         $remember = $request->boolean('remember');
 
         if (Auth::attempt(['email' => $validatedData['email'], 'password' => $validatedData['password']], $remember)) {
+            \Log::info('Login attempt succeeded. Auth Check: ' . Auth::check() . ', User ID: ' . Auth::id());
+
             $request->session()->regenerate();
 
             // Redirect to the home route
@@ -53,4 +55,6 @@ class UserController extends Controller
 
         return redirect('/');
     }
+
+
 }
