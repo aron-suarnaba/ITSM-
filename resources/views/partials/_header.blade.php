@@ -53,8 +53,8 @@
                     aria-label="Open user menu">
                     <span class="avatar avatar-sm" style="background-image: url(/static/avatars/044m.jpg)"></span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>Paweł Kuna</div>
-                        <div class="mt-1 small text-secondary">UI Designer</div>
+                        <div class="text-center">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</div>
+                        <div class="mt-1 small text-secondary">{{ auth()->user()->department }}</div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
