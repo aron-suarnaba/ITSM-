@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TicketGenerator;
 use App\Models\Tickets;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketsController extends Controller
 {
@@ -30,15 +32,35 @@ class TicketsController extends Controller
     {
 
         $validatedData = $request->validate([
-
-            'ReqCatSelect' => ['required', 'string', 'max:255'],
-            'ReqDetSelect' => ['nullable', 'string'],
-            'ReqTypeSelect' => ['required', 'string', 'max:255'],
-            'TicketText' => ['required', 'string', 'max:255'],
-            'DateNeeded' => ['required', 'date'],
-            'DetailedDescription' => ['required', 'string'],
-
+            'reqCatSel' => 'required|string|max:255',
+            'reqDetSel' => 'nullable|string',   // <-- correct
+            'reqTypeSel' => 'required|string|max:255',
+            'needed_date' => 'required|date',
+            'detailed_desc' => 'required|string',
         ]);
+
+
+
+        $dataToSave = [
+            'requested_by_id'     => auth()->user()->employee_id,
+            'requested_date'      => now(),
+            'needed_date'         => $validatedData['needed_date'],
+            'requested_cat'       => $validatedData['reqCatSel'],
+            'requested_details'   => $validatedData['reqDetSel'] ?? null,
+            'request_type'        => $validatedData['reqTypeSel'],
+            'detailed_description'=> $validatedData['detailed_desc'],
+        ];
+
+
+        $ticket = Tickets::create($dataToSave);
+
+        return redirect()->route('tickets', $ticket->id)
+            ->with('success', 'Ticket submitted successfully!');
+
+    }
+
+    public function approval(Request $request)
+    {
 
     }
 
@@ -47,7 +69,7 @@ class TicketsController extends Controller
      */
     public function show(Tickets $tickets)
     {
-        //
+        dd($tickets);
     }
 
     /**

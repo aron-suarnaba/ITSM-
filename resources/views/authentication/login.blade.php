@@ -25,12 +25,6 @@
                 <form action="{{ route('login.post') }}" method="post" autocomplete="off" novalidate="">
                     @csrf
 
-                    @if ($errors->has('email'))
-                        <div class="alert alert-danger">
-                            {{ $errors->first('email') }}
-                        </div>
-                    @endif
-
                     <div class="mb-3">
                         <label class="form-label">Email address</label>
                         <input type="email" id="user_email" name="email"
@@ -58,7 +52,8 @@
                             @enderror
                             <span class="input-group-text">
                                 <a href="#" class="link-secondary" data-bs-toggle="tooltip" aria-label="Show password"
-                                    data-bs-original-title="Show password"><!-- Download SVG icon from http://tabler.io/icons/icon/eye -->
+                                    data-bs-original-title="Show password">
+                                    <!-- Download SVG icon from http://tabler.io/icons/icon/eye -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" class="icon icon-1">

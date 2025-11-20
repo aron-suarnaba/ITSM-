@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('requested_cat');
             $table->string('requested_details')->nullable();
             $table->string('request_type');
+            $table->string('status');
 
             // Review Phase
             $table->string('ticket_number')->nullable()->unique();

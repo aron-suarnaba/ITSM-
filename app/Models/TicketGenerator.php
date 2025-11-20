@@ -22,42 +22,39 @@ class TicketGenerator extends Model
     public static function generateTicketNumber(string $requestCategory): string
     {
         $now = now();
-        $year = $now->format('y'); // Last two digits of the year (e.g., 25)
-        $month = $now->format('n'); // Month number (1-12)
+        $year = $now->format('y');  // Last two digits, e.g. 25
+        $month = $now->format('m'); // Always two digits: 01–12
 
-        // Determine Category Code
+        // Map category to code
         $categoryCode = match (strtolower($requestCategory)) {
             'software' => 'S',
             'technical' => 'T',
-            default => 'O', // 'O' for Other/Default
+            default => 'O',
         };
 
-        // Construct the base prefix for the query (e.g., 'JR-S2511-S')
+        // Prefix for this month's tickets
+        // Example: JR-S2501-S
         $prefix = "JR-{$categoryCode}{$year}{$month}-S";
 
-        // Find the last sequential number for the current prefix
-        // NOTE: If you are using 'Ticket' as the model name, use 'static::' or 'Ticket::'
+        // Look for last ticket this month
         $lastTicket = static::where('ticket_number', 'like', "{$prefix}%")
-                            ->orderBy('ticket_number', 'desc')
-                            ->first();
+            ->orderBy('ticket_number', 'desc')
+            ->first();
 
-        $numericLength = 4; // Assuming 4 digits (S0000 to S9999) based on the "S000" example
+        $numericLength = 4; // 0001–9999
 
-        // Determine the next sequence number
+        // Determine next sequence number
         if ($lastTicket) {
-            // Extract the numeric part (e.g., '0001' from 'JR-S2511-S0001')
-            // Use the full numeric length for extraction
             $lastNumber = (int) substr($lastTicket->ticket_number, -$numericLength);
             $nextNumber = $lastNumber + 1;
         } else {
-            // If no records found for this prefix, start at 1
+            // If no tickets this month, start fresh at 1
             $nextNumber = 1;
         }
 
-        // Format the sequence number as a four-digit string (e.g., 1 -> '0001')
         $sequenceNumber = str_pad($nextNumber, $numericLength, '0', STR_PAD_LEFT);
 
-        // Combine all parts
         return "{$prefix}{$sequenceNumber}";
     }
+
 }

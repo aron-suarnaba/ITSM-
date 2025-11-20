@@ -3,7 +3,7 @@
     @include('partials._header')
 
     <div class="page-wrapper">
-        @include('content.request')
+        @include('Ticketing.request')
     </div>
 
 
