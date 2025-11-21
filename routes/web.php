@@ -18,8 +18,6 @@ Route::get('/login', [UserController::class, 'showLoginForm'])
 
 Route::post('/login', [UserController::class, 'login'])
     ->name('login.submit');
-<<<<<<< Updated upstream
-=======
 
 Route::get('/logout', [UserController::class, 'logout'])
     ->name('logout');
@@ -34,4 +32,3 @@ Route::get('/home', HomeShell::class)
 
 Route::post('/tickets', [TicketsController::class, 'submit'])
     ->name('tickets.submit');
->>>>>>> Stashed changes

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
@@ -22,33 +22,29 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
-
-    public function showLoginForm(){
-        if(Auth::check()){
-            return redirect('/home');
-        }
-
-        return view('authentication.login');
-    }
-
     public function login(Request $request){
-        $credentials = ([
-            'email' => 'required|max:255',
+        $validatedData = $request->validate([
+            'email' => 'required|email|max:255',
             'password' => 'required',
         ]);
 
         $remember = $request->boolean('remember');
 
-        if(Auth::attempt($credentials, $remember)){
+        if (Auth::attempt(['email' => $validatedData['email'], 'password' => $validatedData['password']], $remember)) {
+            \Log::info('Login attempt succeeded. Auth Check: ' . Auth::check() . ', User ID: ' . Auth::id());
+
             $request->session()->regenerate();
 
-            return redirect()->intended('/home');
+            // Redirect to the home route
+            return redirect()->route('home');
         }
 
+        // Log failed attempt and return back with error and old input
+        \Log::warning('Login failed for email: ' . $validatedData['email']);
 
-        throw ValidationException::withMessages([
-            'email' => [trans('auth.failed')]
-        ]);
+        return back()
+            ->withErrors(['email' => trans('auth.failed')])
+            ->withInput($request->except('password'));
     }
 
     public function logout(Request $request){
@@ -59,4 +55,6 @@ class UserController extends Controller
 
         return redirect('/');
     }
+
+
 }

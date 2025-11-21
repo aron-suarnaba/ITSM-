@@ -11,6 +11,14 @@ class GuestShell extends Component
 
     public $currentView = 'welcome';
 
+    public function mount()
+    {
+        // Redirect to home if the user is already authenticated
+        if (auth()->check()) {
+            return redirect()->route('home');
+        }
+    }
+
     public function switchToView($viewName)
     {
         $this->currentView = $viewName;

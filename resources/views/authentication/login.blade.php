@@ -21,14 +21,18 @@
         <div class="card card-md">
             <div class="card-body">
 
-
-
                 <h2 class="h2 text-center mb-4">Login to your account</h2>
-                <form action="{{ route('login.submit') }}" method="get" autocomplete="off" novalidate="">
+                <form action="{{ route('login.post') }}" method="post" autocomplete="off" novalidate="">
+                    @csrf
+
                     <div class="mb-3">
                         <label class="form-label">Email address</label>
-                        <input type="email" id="user_email" name="email" class="form-control"
-                            placeholder="your@email.com" autocomplete="off">
+                        <input type="email" id="user_email" name="email"
+                            class="form-control @error('email') is-invalid @enderror" placeholder="your@email.com"
+                            autocomplete="off">
+                        @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-2">
                         <label class="form-label">
@@ -38,11 +42,18 @@
                             </span>
                         </label>
                         <div class="input-group input-group-flat">
-                            <input type="password" class="form-control" id="user_password" name="password"
-                                placeholder="Your password" autocomplete="off">
+                            <input type="password" class="form-control @error('password') is-invalid
+                            @enderror " id="user_password" name="password" placeholder="Your password"
+                                autocomplete="off">
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             <span class="input-group-text">
                                 <a href="#" class="link-secondary" data-bs-toggle="tooltip" aria-label="Show password"
-                                    data-bs-original-title="Show password"><!-- Download SVG icon from http://tabler.io/icons/icon/eye -->
+                                    data-bs-original-title="Show password">
+                                    <!-- Download SVG icon from http://tabler.io/icons/icon/eye -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" class="icon icon-1">
@@ -56,7 +67,7 @@
                     </div>
                     <div class="mb-2">
                         <label class="form-check">
-                            <input type="checkbox" name="remember me" class="form-check-input">
+                            <input type="checkbox" name="remember" class="form-check-input">
                             <span class="form-check-label">Remember me on this device</span>
                         </label>
                     </div>

@@ -17,8 +17,6 @@
             {{ $slot }}
         </div>
 
-        @yield('footer')
-
     </div>
 
     @livewireScripts

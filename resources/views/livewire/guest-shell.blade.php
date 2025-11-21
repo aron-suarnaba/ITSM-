@@ -6,9 +6,9 @@
 
     <div class="page-wire">
        @if ($currentView === 'welcome')
-        @include('content.main', ['cv' => $currentView])
-    @elseif ($currentView === 'login')
-            @include('authentication.login')
+            @include('content.main', ['cv' => $currentView])
         @endif
     </div>
+
+    @include('partials._footer')
 </div>
