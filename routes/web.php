@@ -22,13 +22,13 @@ Route::post('/login', [UserController::class, 'login'])
 Route::get('/logout', [UserController::class, 'logout'])
     ->name('logout');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/home', HomeShell::class)
-//         ->name('home');
-// });
+Route::middleware('auth')->group(function () {
+    Route::get('/home', HomeShell::class)
+        ->name('home');
 
-Route::get('/home', HomeShell::class)
-    ->name('home');
+    Route::post('/tickets', [TicketsController::class, 'submit'])
+        ->name('tickets.submit');
+});
 
-Route::post('/tickets', [TicketsController::class, 'submit'])
-    ->name('tickets.submit');
+// Route::get('/home', HomeShell::class)
+//     ->name('home');

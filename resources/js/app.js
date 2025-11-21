@@ -36,7 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const requestDetailsContainer = document.getElementById(
         "requestDetailsContainer"
     );
+
+
+
     const RequestTypeSelect = document.getElementById("RequestTypeSelect");
+    const RequestTypeContainer = document.getElementById("requestTypeContainer");
     const NavigationLink = document.querySelectorAll(".nav-links");
 
     // --- Data Arrays ---
@@ -70,13 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "Others",
     ];
 
-    // Initialize modal instance
     let modalInstance = null;
     if (requestModal) {
         modalInstance = new bootstrap.Modal(requestModal, { backdrop: true });
     }
 
-    // --- Helper Function ---
     function clearAndResetSelect(selectElement, placeholderText = "Options") {
         selectElement.innerHTML = "";
         const defaultOption = document.createElement("option");
@@ -87,10 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
         selectElement.appendChild(defaultOption);
     }
 
-    // --- Modal Close Event Listener ---
     if (requestModal) {
         requestModal.addEventListener("hide.bs.modal", function (event) {
-            // Move focus before modal becomes hidden
             const trigger = document.querySelector(
                 '[data-bs-target="#requestModal"]'
             );
@@ -100,14 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         requestModal.addEventListener("hidden.bs.modal", function (event) {
-            // Clear and reset all dynamic select boxes
             clearAndResetSelect(requestDetailSelect, "Select Request Detail");
             clearAndResetSelect(RequestTypeSelect, "Select Request Type");
 
-            // Hide the conditional container
             requestDetailsContainer.classList.add("d-none");
 
-            // Clear inputs
             const ticketInput = document.getElementById("TicketNo");
             if (ticketInput) ticketInput.value = "";
             const desc = document.getElementById("DetailedDescription");
@@ -115,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 1. Logic for Category Buttons (Modal opener)
     RequestCatButton.forEach(function (btn) {
         btn.addEventListener("click", function () {
             const buttonText = btn.textContent.trim();
@@ -124,12 +120,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 2. Logic for Category Select Box (Visibility and Population)
+
+
     RequestCatSelect.addEventListener("change", function () {
         const selectedValue = this.value;
 
         clearAndResetSelect(requestDetailSelect, "Select Request Detail");
         clearAndResetSelect(RequestTypeSelect, "Select Request Type");
+
+        if(RequestTypeContainer) {
+            RequestTypeContainer.classList.remove("d-none");
+        }
 
         if (selectedValue === "Software & Applications") {
             requestDetailsContainer.classList.remove("d-none");
@@ -156,15 +157,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 newOption.textContent = request;
                 RequestTypeSelect.appendChild(newOption);
             });
+        } else if (selectedValue === "Others") {
+
+            requestDetailsContainer.classList.add("d-none");
+
+            if (RequestTypeContainer){
+                RequestTypeContainer.classList.add("d-none");
+                RequestTypeSelect.removeAttribute("required");
+            }
+
         } else {
             requestDetailsContainer.classList.add("d-none");
         }
     });
 
-    // 3. Initial state setting
     requestDetailsContainer.classList.add("d-none");
 
-    // Navigation Link logic
     NavigationLink.forEach((item) => {
         item.addEventListener("click", (event) => {
             NavigationLink.forEach((el) => {

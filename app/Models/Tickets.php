@@ -31,6 +31,7 @@ class Tickets extends Model
         'requested_details',
         'request_type',
         'detailed_description',
+        'status',
 
         // Review/Assignment Phase (Can be null)
         'ticket_number',

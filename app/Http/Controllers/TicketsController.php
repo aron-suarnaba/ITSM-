@@ -49,13 +49,19 @@ class TicketsController extends Controller
             'requested_details'   => $validatedData['reqDetSel'] ?? null,
             'request_type'        => $validatedData['reqTypeSel'],
             'detailed_description'=> $validatedData['detailed_desc'],
+            'status'              => 'For Review',
         ];
 
 
         $ticket = Tickets::create($dataToSave);
 
-        return redirect()->route('tickets', $ticket->id)
+        return redirect()->route('home')
             ->with('success', 'Ticket submitted successfully!');
+
+    }
+
+    public function review(Request $request)
+    {
 
     }
 
@@ -69,7 +75,7 @@ class TicketsController extends Controller
      */
     public function show(Tickets $tickets)
     {
-        dd($tickets);
+
     }
 
     /**

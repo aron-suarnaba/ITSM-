@@ -104,8 +104,8 @@
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col-sm-12 col-md-8">
+                    <div class="row mb-3" id="requestTypeRow">
+                        <div class="col-sm-12 col-md-8" id="requestTypeContainer">
                             <label for="RequestTypeSelect" class="form-label">Request Type</label>
                             <select class="form-select" name="reqTypeSel" id="RequestTypeSelect" required>
                                 <option value="" disabled>Options</option>
