@@ -22,7 +22,7 @@
             <div class="card-body">
 
                 <h2 class="h2 text-center mb-4">Login to your account</h2>
-                <form action="{{ route('login.post') }}" method="post" autocomplete="off" novalidate="">
+                <form action="{{ route('login.submit') }}" method="post" autocomplete="off" novalidate="">
                     @csrf
 
                     <div class="mb-3">

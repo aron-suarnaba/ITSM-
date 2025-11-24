@@ -148,6 +148,8 @@
 
 @if (session('success'))
     <script>
+        $('#requestModal').modal('hide');
+
         toastr.success("{{ session('success') }}", 'Success');
     </script>
 @endif

@@ -1,15 +1,18 @@
-<x-login title="Login">
+<x-home>
+    <x-slot:aside>
+        @include('partials._aside')
+    </x-slot:aside>
 
     <x-slot:header>
-        @include('partials._nav')
+        @include('partials._header')
     </x-slot:header>
 
     <x-slot:content>
-        @include('authentication.login')
+
     </x-slot:content>
 
     <x-slot:footer>
         @include('partials._footer')
     </x-slot:footer>
 
-</x-login>
+</x-home>

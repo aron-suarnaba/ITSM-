@@ -1,3 +1,4 @@
+@props(['title' => 'ITSM+', 'header' => '', 'content' => '', 'footer' => '',])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark" data-bs-theme-base="slate"
     data-bs-theme-primary="teal" data-bs-theme-radius="2">
@@ -5,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'ITSM')</title>
+    <title>{{ $title }}</title>
     @vite(['resources\css\app.css', 'resources\js\app.js'])
 
 </head>
@@ -14,14 +15,14 @@
 
     <div class="page">
         <div class="page-wrapper">
-            @yield('header')
+            {{ $header }}
 
 
             <div class="page-wire">
-                @yield('content')
+                {{ $content }}
             </div>
 
-            @yield('footer')
+            {{ $footer }}
         </div>
     </div>
 

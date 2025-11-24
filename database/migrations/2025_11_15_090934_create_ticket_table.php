@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('status');
 
             // Review Phase
-            $table->string('ticket_number')->nullable()->unique();
+            $table->string('ticket_number')->nullable();
             $table->dateTime('datetime_received')->nullable();
 
             // 2. Define nullable string columns for user references
@@ -70,6 +70,8 @@ return new class extends Migration
             $table->foreign('enduser_acceptance_id')->references('employee_id')->on('users');
 
         });
+
+        DB::statement('CREATE UNIQUE INDEX tickets_ticket_number_unique ON tickets (ticket_number) WHERE ticket_number IS NOT NULL');
     }
 
     /**
