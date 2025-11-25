@@ -46,6 +46,7 @@
             </li>
         </ul>
         <div class="navbar-nav flex-row order-md-last ms-auto">
+
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset" data-bs-toggle="dropdown"
                     aria-label="Open user menu">

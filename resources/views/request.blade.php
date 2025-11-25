@@ -8,7 +8,7 @@
     </x-slot:header>
 
     <x-slot:content>
-        @include('page.dashboard')
+        @include('page.request-user-page')
     </x-slot:content>
 
     <x-slot:footer>
