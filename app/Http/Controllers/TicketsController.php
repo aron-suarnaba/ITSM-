@@ -12,9 +12,16 @@ class TicketsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function user_index()
     {
-        //
+        $auth_user = auth()->user()->employee_id;
+
+        $requests = Tickets::select()
+        ->where('requested_by_id', $auth_user)
+        ->orderBy('created_at', 'desc')
+        ->paginate(15);
+
+        return view('home', compact('requests'));
     }
 
     /**
@@ -56,7 +63,7 @@ class TicketsController extends Controller
         $ticket = Tickets::create($dataToSave);
 
         return redirect()->route('home')
-            ->with('success', 'Ticket submitted successfully!');
+            ->with('success', 'Request submitted successfully!');
 
     }
 

@@ -5,11 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
 
-
-
-
 Route::get('/', function(){
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/login', function(){
@@ -23,13 +20,14 @@ Route::get('/logout', [UserController::class, 'logout'])
     ->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', function(){
-        return view('home');
-    })->name('home');
+
 
     Route::post('/tickets', [TicketsController::class, 'submit'])
         ->name('tickets.submit');
-});
 
-// Route::get('/home', HomeShell::class)
-//     ->name('home');
+    Route::get('/dashboard', function(){
+        return view('dashboard');
+    })->name('dashboard');
+
+    });
+

@@ -19,7 +19,7 @@ class UserController extends Controller
                     ->paginate(12);
 
 
-        return view('users.index', compact('users'));
+        return view('dashboard', compact('users'));
     }
 
     public function login(Request $request){
@@ -36,7 +36,7 @@ class UserController extends Controller
             $request->session()->regenerate();
 
             // Redirect to the home route
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }
 
         // Log failed attempt and return back with error and old input

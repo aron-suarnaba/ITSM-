@@ -8,7 +8,6 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">
                     <span class="nav-link-icon">
-                        <!-- Download SVG icon from http://tabler.io/icons/icon/home -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="icon icon-1">
@@ -22,8 +21,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <span class="nav-link-icon"><!-- Download SVG icon from http://tabler.io/icons/icon/checkbox -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    <span class="nav-link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="icon icon-1">
                             <path d="M9 11l3 3l8 -8" />
@@ -35,7 +33,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <span class="nav-link-icon"><!-- Download SVG icon from http://tabler.io/icons/icon/checkbox -->
+                    <span class="nav-link-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="icon icon-1">
@@ -51,9 +49,13 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url(/static/avatars/044m.jpg)"></span>
-                    <div class="d-none d-xl-block ps-2">
-                        <div class="text-center">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</div>
+                    @if (auth()->user()->gender == 'Male')
+                        <span class="avatar avatar-sm" style="background-image: url('/ITSM+/resources/images/male-avatar.png')"></span>
+                    @elseif (auth()->user()->gender == 'Female')
+                        <span class="avatar avatar-sm" style="background-image: url('/ITSM+/resources/images/female-avatar.png')"></span>
+                    @endif
+                    <div class="d-none d-md-block ps-2">
+                        <div class="text-center text-light">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</div>
                         <div class="mt-1 small text-secondary">{{ auth()->user()->department }}</div>
                     </div>
                 </a>

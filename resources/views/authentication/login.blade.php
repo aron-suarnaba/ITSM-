@@ -2,7 +2,7 @@
     <div class="container container-tight py-4">
         <div class="text-center mb-4">
             <!-- BEGIN NAVBAR LOGO -->
-            <a href="." aria-label="Tabler"
+            <a href="." aria-label="Welcome"
                 class="navbar-brand navbar-brand-autodark d-flex justify-content-center align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" style="width: 2.5rem; height: 2.5rem;" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

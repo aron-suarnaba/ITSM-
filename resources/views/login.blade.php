@@ -1,4 +1,4 @@
-<x-login title="Login">
+<x-layouts.login title="Login">
 
     <x-slot:header>
         @include('partials._nav')
@@ -12,4 +12,4 @@
         @include('partials._footer')
     </x-slot:footer>
 
-</x-login>
+</x-layouts.login>

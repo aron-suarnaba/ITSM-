@@ -1,18 +1,10 @@
-<x-home>
-    <x-slot:aside>
-        @include('partials._aside')
-    </x-slot:aside>
+<x-layouts.home title="Welcome">
 
     <x-slot:header>
-        @include('partials._header')
+        @include('partials._nav')
     </x-slot:header>
 
     <x-slot:content>
-
+        @include('page.landing-page')
     </x-slot:content>
-
-    <x-slot:footer>
-        @include('partials._footer')
-    </x-slot:footer>
-
-</x-home>
+</x-layouts.home>

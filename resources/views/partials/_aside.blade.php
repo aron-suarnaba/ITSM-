@@ -1,13 +1,15 @@
-<aside class="navbar navbar-vertical navbar-expand-sm position-absolute" data-bs-theme="dark">
+<aside class="navbar navbar-vertical navbar-expand-sm position-absolute top-0 start-0 h-100" data-bs-theme="dark">
     <div class="container-fluid">
 
-        <!-- Toggler -->
+        <!-- Toggler - Visible on screens smaller than 'sm' -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Brand -->
-        <a href="#" class="navbar-brand navbar-brand-autodark d-flex justify-content-center align-items-center gap-2 mt-3">
+        <!-- Brand/Logo -->
+        <a href="#"
+            class="navbar-brand navbar-brand-autodark d-flex justify-content-center align-items-center gap-2 mt-3">
+            <!-- SVG Icon for ITSM+ -->
             <svg xmlns="http://www.w3.org/2000/svg" style="width: 2.5rem; height: 2.5rem;" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-devices-pc">
@@ -22,28 +24,27 @@
             <span>ITSM+</span>
         </a>
 
-        <!-- Sidebar Menu -->
-        <div class="collapse navbar-collapse" id="sidebar-menu">
+        <!-- Sidebar Menu - Collapses on mobile, expands on 'sm' and up -->
+        <div class="navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
 
                 <!-- Home -->
                 <li class="nav-item">
-                    <a class="nav-link" href="./">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            stroke="currentColor" stroke-width="2" class="icon me-2">
+                    <a class="nav-link" href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+                            stroke-width="2" class="icon me-2">
                             <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
                             <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
                             <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
                         </svg>
-                        <span>Home</span>
+                        <span>Dashboard</span>
                     </a>
                 </li>
 
-                <!-- Helpdesk & Ticketing -->
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#helpdeskAndTicketing" aria-expanded="false">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            stroke="currentColor" stroke-width="2" class="icon me-2">
+                    <a class="nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+                            stroke-width="2" class="icon me-2">
                             <path d="M3 5h6v14h-6z" />
                             <path d="M12 9h10v7h-10z" />
                             <path d="M14 19h6" />
@@ -54,16 +55,15 @@
                         <span>Helpdesk & Ticketing</span>
                     </a>
 
-                    <div class="collapse" id="helpdeskAndTicketing">
-                        <ul class="nav flex-column">
-                            <li class="nav-item"><a class="nav-link active" href="#">Request</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Incidents</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Ticket Life Cycle</a></li>
-                        </ul>
-                    </div>
+                    <ul class="nav flex-column ps-4">
+                        <li class="nav-item"><a class="nav-link" href="#">Request</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Incidents</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Ticket Life Cycle</a></li>
+                    </ul>
                 </li>
 
-                <!-- Change Management -->
+
+                <!-- Other links -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="me-2">
@@ -74,7 +74,6 @@
                     </a>
                 </li>
 
-                <!-- Asset & Configuration Database -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="me-2">
@@ -85,7 +84,6 @@
                     </a>
                 </li>
 
-                <!-- Service Catalog & Workflow Engine -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" class="me-2">
@@ -96,7 +94,6 @@
                     </a>
                 </li>
 
-                <!-- Knowledge Base -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="me-2">
@@ -107,18 +104,7 @@
                     </a>
                 </li>
 
-                <!-- Dashboard & SLA Tracking -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" class="me-2">
-                            <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3" />
-                        </svg>
-                        <span>Dashboard & SLA Tracking</span>
-                    </a>
-                </li>
-
             </ul>
         </div>
-
     </div>
 </aside>

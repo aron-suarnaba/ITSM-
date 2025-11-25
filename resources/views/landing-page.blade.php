@@ -1,13 +1,13 @@
-@extends('layouts.login')
+<x-layouts.home title="Welcome to ITSM+">
+    <x-slot:header>
+        @include('partials._nav')
+    </x-slot:header>
 
-@section('header')
-    @include('partials._nav')
-@endsection
+    <x-slot:content>
+        @include('page.landing-page')
+    </x-slot:content>
 
-@section('content')
-    @include('content.main')
-@endsection
-
-@section('footer')
-    @include('partials._footer')
-@endsection
+    <x-slot:footer>
+        @include('partials._footer')
+    </x-slot:footer>
+</x-layouts.home>

@@ -18,11 +18,11 @@
                             Request Catalog
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body d-block px-5">
                         <div class="mb-3">
                             <input type="text" name="search" id="" class="form-control" placeholder="Search">
                         </div>
-                        <div class="d-grid gap-2" role="group" aria-label="Request Categories">
+                        <div class="btn-group-vertical d-block px-5" role="group" aria-label="Vertical button group">
                             <button type="button" class="btn btn-primary RequestCatButton" id="TechSuppReqButton"
                                 data-bs-toggle="modal" data-bs-target="#requestModal">Technical Support</button>
                             <button type="button" class="btn btn-primary RequestCatButton" id="SoftwareAppRequest"
@@ -40,7 +40,7 @@
                         <div class="card-title">History</div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive" st>
                             <table class="table table-vcenter table-nowrap card-center">
                                 <thead>
                                     <tr>
@@ -53,37 +53,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($requests as $request)
-                                        <tr>
-                                            <th>{{ $request->id }}</th>
-                                            <th>{{ $request->requested_cat }}</th>
-                                            <th>{{ $request->ticket_number }}</th>
-                                            <th>{{ $request->request_type }}</th>
-                                            <th>{{ $request->requested_date }}</th>
-                                            <th>
-                                                @if ($request->status == 'For Review')
-                                                    <span class="badge bg-cyan text-cyan-fg">{{ $request->status }}</span>
-                                                @elseif ($request->status == 'For Approval')
-                                                    <span class="badge bg-orange text-orange-fg">{{ $request->status }}</span>
-                                                @elseif ($request->status == 'Rejected')
-                                                    <span class="badge bg-red text-red-fg">{{ $request->status }}</span>
-                                                @endif
-                                            </th>
-                                        </tr>
-                                    @endforeach
+                                    <tr>
+                                        <th>1</th>
+                                        <th>Software & Applications</th>
+                                        <th>JR-S1125-S0001</th>
+                                        <th>ERP</th>
+                                        <th>2025-11-15</th>
+                                        <th> <span class="badge bg-azure text-azure-fg">Approved</span></th>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
         </div>
     </div>
 </div>
 
+
 @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    <script>
+        $('#requestModal').modal('hide');
+
+        toastr.success("{{ session('success') }}", 'Success');
+    </script>
 @endif
