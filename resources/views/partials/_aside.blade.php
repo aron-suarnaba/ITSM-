@@ -28,6 +28,10 @@
         <div class="navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
 
+                @php
+
+                @endphp
+
                 <!-- Home -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard') }}">
@@ -41,6 +45,7 @@
                     </a>
                 </li>
 
+                <!-- Ticket Request -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('request') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -56,6 +61,68 @@
                         <span>Ticket Request</span>
                     </a>
                 </li>
+
+                @auth
+
+                    @php
+                        $userPosition = auth()->user()->position;
+                    @endphp
+
+                    @if ($userPosition == 'IT Manager' || $userPosition == 'Financial Director')
+
+                        {{-- 1. IT/Finance Approval View --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dashboard') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-gavel">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M13 10l7.383 7.418c.823 .82 .823 2.148 0 2.967a2.11 2.11 0 0 1 -2.976 0l-7.407 -7.385" />
+                                    <path d="M6 9l4 4" />
+                                    <path d="M13 10l-4 -4" />
+                                    <path d="M3 21h7" />
+                                    <path
+                                        d="M6.793 15.793l-3.586 -3.586a1 1 0 0 1 0 -1.414l2.293 -2.293l.5 .5l3 -3l-.5 -.5l2.293 -2.293a1 1 0 0 1 1.414 0l3.586 3.586a1 1 0 0 1 0 1.414l-2.293 2.293l-.5 -.5l-3 3l.5 .5l-2.293 2.293a1 1 0 0 1 -1.414 0z" />
+                                </svg>
+                                <span>IT/Finance Approval</span>
+                            </a>
+                        </li>
+
+                    @elseif ($userPosition == 'IT Supervisor' || $userPosition == 'IT Consultant' || $userPosition == 'IT Senior')
+
+                        {{-- 2. IT Personnel Assignation View --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('it_personnel_tasks') }}">
+                                <i class="icon icon-tabler icons-tabler-outline icon-tabler-users-plus me-2"></i>
+                                <span>IT Personnel Assignation</span>
+                            </a>
+                        </li>
+
+                    @elseif ($userPosition == 'IT Specialist' || $userPosition == 'System Analyst Programmer')
+
+                        {{-- 3. Department Review View --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dept_review') }}">
+                                <i class="icon icon-tabler icons-tabler-outline icon-tabler-eye-check me-2"></i>
+                                <span>Department Review</span>
+                            </a>
+                        </li>
+
+                    @elseif ($userPosition == 'Manager')
+
+                        {{-- 4. General Manager Approval View (Your original condition) --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('review') }}">
+                                <i class="icon icon-tabler icons-tabler-outline icon-tabler-ticket me-2"></i>
+                                <span>Ticket Review</span>
+                            </a>
+                        </li>
+
+                    @endif
+
+                @endauth
+
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('request') }}">

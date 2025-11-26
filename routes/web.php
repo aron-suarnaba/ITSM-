@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
 Route::get('/login', function () {
@@ -32,5 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/tickets', [TicketsController::class, 'submit'])
         ->name('tickets.submit');
 
+    Route::get('/review', function(){
+        return view('review');
+    })->name('review');
+
+    Route::get('/approval', function(){
+        return view('approval');
+    })->name('approval');
 });
 

@@ -29,7 +29,6 @@ class TicketSeeders extends Seeder
                 'requested_cat' => $this->getRandomCategory(),
                 'requested_details' => $this->generateRandomText(),
                 'request_type' => $this->getRandomRequestType(),
-                'detailed_description' => $this->generateRandomText(),
                 'status' => $this->getRandomStatus(),
 
                 // Review/Assignment Phase (can be null)

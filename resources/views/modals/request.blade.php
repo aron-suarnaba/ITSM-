@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link link-secondary">
+                    <button type="button" class="btn btn-link link-secondary" data-bs-dismiss="modal">
                         Cancel
                     </button>
                     <button type="submit" id="requestSubmitModalButton" class="btn btn-primary ms-auto">

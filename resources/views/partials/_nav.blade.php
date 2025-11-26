@@ -23,7 +23,7 @@
         <div class=" navbar-collapse" id="navbarTogglerDemo01">
             <nav class="navbar-nav ms-auto">
                 <div class="nav-item">
-                    <a class="nav-link active" href="."><span class="nav-link-title">Home</span></a>
+                    <a class="nav-link active" href="{{ url('/') }}"><span class="nav-link-title">Home</span></a>
                 </div>
                 <div class="nav-item">
                     <a class="nav-link" href="#"><span

@@ -37,7 +37,7 @@
             <div class="col-sm-12 col-md-9">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Recently Requested Ticket</div>
+                        <div class="card-title">Recently Ticket Request</div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

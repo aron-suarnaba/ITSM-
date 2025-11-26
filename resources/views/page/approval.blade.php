@@ -2,7 +2,7 @@
     <div class="container-xl">
         <div class="row g-2 align-items-center">
             <div class="col">
-                <h2 class="page-title">Ticket Review</h2>
+                <h2 class="page-title">Ticket Approval</h2>
             </div>
 
         </div>

@@ -8,7 +8,7 @@
     </x-slot:header>
 
     <x-slot:content>
-        @include('page.maintenance-page')
+        @include('page.review')
     </x-slot:content>
 
     <x-slot:footer>
