@@ -16,3 +16,5 @@
     </x-slot:footer>
 
 </x-layouts.app>
+
+@include('modals.review')

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TicketsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -32,9 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/tickets', [TicketsController::class, 'submit'])
         ->name('tickets.submit');
 
-    Route::get('/review', function(){
-        return view('review');
-    })->name('review');
+    Route::get('/review', [ReviewController::class, 'usersRequestedTable'])
+        ->name('review');
 
     Route::get('/approval', function(){
         return view('approval');

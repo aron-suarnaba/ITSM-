@@ -7,7 +7,6 @@ use App\Models\TicketGenerator;
 use App\Models\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Events\TicketsReviewDataDisplay;
 
 class TicketsController extends Controller
 {
