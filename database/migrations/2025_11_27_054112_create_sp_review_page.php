@@ -27,6 +27,7 @@ return new class extends Migration {
                 t.requested_cat,
                 t.requested_details,
                 t.request_type,
+                t.detailed_description,
                 t.[status]
             FROM
                 tickets t

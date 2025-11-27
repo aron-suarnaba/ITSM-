@@ -1,10 +1,7 @@
-<aside class="navbar navbar-vertical navbar-expand-sm position-absolute top-0 start-0 h-100" data-bs-theme="dark">
+<aside class="navbar navbar-vertical navbar-expand-sm" data-bs-theme="dark">
     <div class="container-fluid">
 
         <!-- Toggler - Visible on screens smaller than 'sm' -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
         <!-- Brand/Logo -->
         <a href="#"
@@ -27,10 +24,6 @@
         <!-- Sidebar Menu - Collapses on mobile, expands on 'sm' and up -->
         <div class="navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
-
-                @php
-
-                @endphp
 
                 <!-- Home -->
                 <li class="nav-item">

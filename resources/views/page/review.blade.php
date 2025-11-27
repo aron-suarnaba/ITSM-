@@ -31,18 +31,18 @@
                                 <thead>
                                     <tr>
                                         <th><button class="table-sort" data-sort="sort-city">Requestor</button></th>
-                                        <th><button class="table-sort" data-sort="sort-type">Request Category</button></th>
-                                        <th><button class="table-sort" data-sort="sort-score">Request Date and Time</button></th>
+                                        <th><button class="table-sort" data-sort="sort-type">Request Category</button>
+                                        </th>
+                                        <th><button class="table-sort" data-sort="sort-score">Request Date and
+                                                Time</button></th>
                                         <th><button class="table-sort" data-sort="sort-date">Date Needed</button></th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-tbody">
 
                                     @forelse($requests as $request)
-                                        <tr class="fw-bold clickable-row"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#reviewModal"
-                                            data-last_name="{{ $request->last_name }}"
+                                        <tr class="fw-bold clickable-row" data-bs-toggle="modal"
+                                            data-bs-target="#reviewModal" data-last_name="{{ $request->last_name }}"
                                             data-first_name="{{ $request->first_name }}"
                                             data-requested_cat="{{ $request->requested_cat }}"
                                             data-created_at="{{ $request->created_at }}"
@@ -50,8 +50,7 @@
                                             data-requested_date="{{ $request->requested_date }}"
                                             data-requested_details="{{ $request->requested_details }}"
                                             data-request_type="{{ $request->request_type }}"
-                                            data-status="{{ $request->status }}"
-                                            >
+                                            data-status="{{ $request->status }}">
                                             <td>{{ $request->last_name }}, {{ $request->first_name }}</td>
                                             <td>{{ $request->requested_cat }}</td>
                                             <td>{{ $request->created_at->format('F j, Y | g:i A') }}</td>
