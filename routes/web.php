@@ -39,5 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/approval', function(){
         return view('approval');
     })->name('approval');
+
+    Route::get('/guides', function(){
+        return view('guides');
+    })->name('guides');
 });
 

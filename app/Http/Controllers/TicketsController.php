@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TicketsReviewDataDisplay;
 use App\Models\TicketGenerator;
 use App\Models\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\TicketsReviewDataDisplay;
 
 class TicketsController extends Controller
 {
@@ -28,7 +30,7 @@ class TicketsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function submit(Request $request)
+    public function submit(Request $request, Tickets $tickets)
     {
 
         $validatedData = $request->validate([
@@ -55,7 +57,11 @@ class TicketsController extends Controller
 
         $ticket = Tickets::create($dataToSave);
 
-        return redirect()->route('request')
+        event(new TicketsReviewDataDisplay($tickets));
+
+        return redirect()->route('request
+
+        ')
             ->with('success', 'Request submitted successfully!');
 
     }

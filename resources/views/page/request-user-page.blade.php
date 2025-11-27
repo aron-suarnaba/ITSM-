@@ -2,7 +2,7 @@
     <div class="container-xl">
         <div class="row g-2 align-items-center">
             <div class="col">
-                <h2 class="page-title">Request</h2>
+                <h2 class="page-title">Ticket Request</h2>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-vcenter table-nowrap card-center">
+                            <table class="table table-vcenter table-nowrap card-center mb-4">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
@@ -52,13 +52,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($requests as $request)
+                                    @forelse ($requests as $request)
                                         <tr>
-                                            <th>{{ $request->id }}</th>
-                                            <th>{{ $request->requested_cat }}</th>
-                                            <th>{{ $request->request_type }}</th>
-                                            <th>{{ $request->requested_date }}</th>
-                                            <th>
+                                            <td>{{ $request->id }}</td>
+                                            <td>{{ $request->requested_cat }}</td>
+                                            <td>{{ $request->request_type }}</td>
+                                            <td>{{ $request->requested_date }}</td>
+                                            <td>
                                                 @if ($request->status == 'For Review')
                                                     <span class="badge bg-cyan text-cyan-fg">{{ $request->status }}</span>
                                                 @elseif ($request->status == 'For Approval')
@@ -66,11 +66,20 @@
                                                 @elseif ($request->status == 'Rejected')
                                                     <span class="badge bg-red text-red-fg">{{ $request->status }}</span>
                                                 @endif
-                                            </th>
+                                            </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">No activity tables</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+
+                            <div class="row g-2 justify-content-center justify-content-sm-between mb-3">
+                                {{ $requests->links('pagination::bootstrap-5') }}
+                            </div>
+
                         </div>
                     </div>
                 </div>
