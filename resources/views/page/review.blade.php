@@ -47,7 +47,7 @@
                                             data-requested_cat="{{ $request->requested_cat }}"
                                             data-created_at="{{ $request->created_at }}"
                                             data-needed_date="{{ $request->needed_date }}"
-                                            data-requested_date="{{ $request->requested_date }}"
+                                            data-created_at="{{ $request->created_at }}"
                                             data-requested_details="{{ $request->requested_details }}"
                                             data-request_type="{{ $request->request_type }}"
                                             data-status="{{ $request->status }}"

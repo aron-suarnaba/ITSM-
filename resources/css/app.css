@@ -23,3 +23,7 @@
     width: 4em;
     height: 4em;
 }
+
+.clickable-row{
+    cursor: pointer;
+}

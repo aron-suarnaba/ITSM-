@@ -50,11 +50,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-sm-12 col-md-12">
                             <h4 class="h5 text-primary mb-2">Detailed Description</h4>
-                            <div id="modal-detailed-description" class="p-3 border rounded text-wrap"
-                                style="white-space: pre-wrap; min-height: 100px;">
-                            </div>
+                            <textarea type="text" id="modal-detailed-description" class="container-fluid p-3 border rounded text-wrap"
+                                style="white-space: pre-wrap; min-height: 100px;" rows="7" disabled>
+                            </textarea>
                         </div>
                     </div>
                 </div>

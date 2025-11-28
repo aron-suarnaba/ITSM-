@@ -54,7 +54,7 @@
             const requested_details = button.getAttribute('data-requested_details');
             const request_type = button.getAttribute('data-request_type');
             const status = button.getAttribute('data-status');
-            const detailed_description = button.getAttribute('detailed_description');
+            const detailed_description = button.getAttribute('data-detailed_description');
 
             // --- 2. Populate the Modal Elements ---
 

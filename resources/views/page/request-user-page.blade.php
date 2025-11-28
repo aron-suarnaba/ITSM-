@@ -23,11 +23,13 @@
                             <input type="text" name="search" id="" class="form-control" placeholder="Search">
                         </div>
                         <div class="d-grid gap-2" role="group" aria-label="Request Categories">
-                            <button type="button" class="btn btn-primary RequestCatButton" id="TechSuppReqButton"
-                                data-bs-toggle="modal" data-bs-target="#requestModal">Technical Support</button>
-                            <button type="button" class="btn btn-primary RequestCatButton" id="SoftwareAppRequest"
-                                data-bs-toggle="modal" data-bs-target="#requestModal">Software & Applications</button>
-                            <button type="button" class="btn btn-primary RequestCatButton" id="OtherReqButton"
+                            <button type="button" class="btn btn-primary text-wrap RequestCatButton"
+                                id="TechSuppReqButton" data-bs-toggle="modal" data-bs-target="#requestModal">Technical
+                                Support</button>
+                            <button type="button" class="btn btn-primary text-wrap RequestCatButton"
+                                id="SoftwareAppRequest" data-bs-toggle="modal" data-bs-target="#requestModal">Software &
+                                Applications</button>
+                            <button type="button" class="btn btn-primary text-wrap RequestCatButton" id="OtherReqButton"
                                 data-bs-toggle="modal" data-bs-target="#requestModal">Others</button>
                         </div>
                     </div>
@@ -44,28 +46,38 @@
                             <table class="table table-vcenter table-nowrap card-center mb-4">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
+                                        <th>Date and Time Requested</th>
+                                        <th>Needed Date</th>
                                         <th>Request Category</th>
                                         <th>Request Type</th>
-                                        <th>Date and Time Requested</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($requests as $request)
-                                        <tr>
-                                            <td>{{ $request->id }}</td>
+                                        <tr class="fw-bold clickable-row" data-bs-toggle="modal"
+                                            data-bs-target="#requestDetailsModal" {{-- REMOVED: data-last_name and data-first_name
+                                            --}} {{-- DATE/TIME DATA REMAINS --}}
+                                            data-created_at="{{ $request->created_at->toDateTimeString() }}"
+                                            data-needed_date="{{ $request->needed_date }}"
+                                            data-requested_cat="{{ $request->requested_cat }}"
+                                            data-requested_details="{{ $request->requested_details }}"
+                                            data-request_type="{{ $request->request_type }}"
+                                            data-detailed_description="{{ $request->detailed_description }}"
+                                            data-status="{{ $request->status }}">
+                                            {{-- Table Cells (td) for Request History --}}
+                                            <td>{{ $request->created_at->format('g:i A, F j, Y ') }}</td>
+                                            <td>{{ $request->needed_date->format('F j, Y') }}</td>
                                             <td>{{ $request->requested_cat }}</td>
                                             <td>{{ $request->request_type }}</td>
-                                            <td>{{ $request->requested_date }}</td>
                                             <td>
+                                                {{-- Status Badge Logic Here --}}
                                                 @if ($request->status == 'For Review')
-                                                    <span class="badge bg-cyan text-cyan-fg">{{ $request->status }}</span>
-                                                @elseif ($request->status == 'For Approval')
                                                     <span class="badge bg-orange text-orange-fg">{{ $request->status }}</span>
-                                                @elseif ($request->status == 'Rejected')
-                                                    <span class="badge bg-red text-red-fg">{{ $request->status }}</span>
+                                                @elseif ($request->status == 'For Approval')
+                                                    <span class="badge bg-cyan text-cyan-fg">{{ $request->status }}</span>
                                                 @endif
+                                                {{-- ... other status conditions ... --}}
                                             </td>
                                         </tr>
                                     @empty

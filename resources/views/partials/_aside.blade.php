@@ -1,8 +1,6 @@
 <aside class="navbar navbar-vertical navbar-expand-sm" data-bs-theme="dark">
     <div class="container-fluid">
 
-        <!-- Toggler - Visible on screens smaller than 'sm' -->
-
         <!-- Brand/Logo -->
         <a href="#"
             class="navbar-brand navbar-brand-autodark d-flex justify-content-center align-items-center gap-2 mt-3">
