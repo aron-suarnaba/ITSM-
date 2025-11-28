@@ -1,7 +1,7 @@
 <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="#" method="post">
+            <form action="{{ route('review.approved') }}" method="post">
                 @csrf
                 <input type="hidden" name="request_id" id="modal-request-id" value="">
 

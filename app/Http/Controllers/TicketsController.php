@@ -70,13 +70,15 @@ class TicketsController extends Controller
         $managers_id = auth()->user()->employee_id;
 
         $dataToSave = [
-            'received_by_id' => $managers_id,
-            'status' => 'For Approval'
+            'received_by_id'    => $managers_id,
+            'status'            => 'For Approval',
+            'review_at'         => now(),
         ];
 
         return redirect()->route('review')
-            ->with('success', 'Ticket successfully reviewed for final approval.');
+            ->with('success', 'Ticket successfully reviewed for approval.');
     }
+
 
     public function reviewRejected(Request $request)
     {

@@ -1,4 +1,5 @@
-<div class="modal fade" id="requestDetailsModal" tabindex="-1" aria-labelledby="reviewDetailsModalTitle" aria-hidden="true">
+<div class="modal fade" id="requestDetailsModal" tabindex="-1" aria-labelledby="reviewDetailsModalTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <form action="#" method="post">
@@ -6,8 +7,7 @@
                 <input type="hidden" name="request_details_id" id="modal-request-details-id" value="">
 
                 <div class="modal-header">
-                    <h5 class="modal-title" id="requestDetailsModalTitle">Review Ticket:
-                        <span id="modal-details-request-type" class="fw-bolder"></span>
+                    <h5 class="modal-title" id="requestDetailsModalTitle">Review Request
                     </h5>
                     <button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
@@ -21,27 +21,37 @@
                         <div class="col-md-6 mb-2">
                             <strong>Category:</strong> <span id="modal-request-requested-cat"></span>
                         </div>
+
                         <div class="col-md-6 mb-2">
-                            <strong>Status:</strong> <span id="modal-request-status" class="badge text-bg-warning"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Submitted On:</strong> <span id="modal-request-created-at"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Date Needed:</strong> <span id="modal-request-needed-date" class="fw-bold"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Requested Date:</strong> <span id="modal-request-requested-date"></span>
+                            <strong>Status:</strong> <span id="modal-request-status"
+                                class="badge text-bg-warning"></span>
                         </div>
                         <div class="col-md-6 mb-2">
                             <strong>Requested Details:</strong> <span id="modal-request-requested-details"></span>
                         </div>
+
+                        <div class="col-md-6 mb-2">
+                            <strong>Date Needed:</strong> <span id="modal-request-needed-date" class="fw-bold"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-2">
+                            <strong>Request Type:</strong> <span id="modal-details-request-type" class="fw-bolder"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-2">
+                            <strong>Requested Date:</strong> <span id="modal-request-requested-date"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Submitted On:</strong> <span id="modal-request-created-at"></span>
+                        </div>
+
                     </div>
 
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
                             <h4 class="h5 text-primary mb-2">Detailed Description</h4>
-                            <textarea type="text" id="modal-request-detailed-description" class="container-fluid p-3 border rounded text-wrap"
+                            <textarea type="text" id="modal-request-detailed-description"
+                                class="container-fluid p-3 border rounded text-wrap"
                                 style="white-space: pre-wrap; min-height: 100px;" rows="7" disabled>
                             </textarea>
                         </div>

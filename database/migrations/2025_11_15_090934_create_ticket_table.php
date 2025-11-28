@@ -27,7 +27,7 @@ return new class extends Migration {
             $table->string('requested_details')->nullable();
             $table->string('request_type');
             $table->text('detailed_description'); // Removed nullable and placed it here
-            $table->uuid('review_key')->nullable()->unique();
+            $table->uuid('review_key')->nullable();
 
 
             // ------------------------------------------

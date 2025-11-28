@@ -63,7 +63,11 @@
                     });
                 }
 
-                requestDetailsModal.querySelector('#modal-request-requested-details').textContent = requested_details;
+                if (requestDetailsModal){
+                    requestDetailsModal.querySelector('#modal-request-requested-details').textContent = requested_details;
+                } else {
+                    requestDetailsModal.querySelector('#modal-request-requested-details').textContent = "None";
+                }
 
                 // Populate the Textarea element
                 const descriptionArea = requestDetailsModal.querySelector('#modal-request-detailed-description');

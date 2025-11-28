@@ -43,7 +43,10 @@ return new class extends Migration {
             ON
                 t.requested_by_id = u.employee_id
             WHERE
-                u.manager_id = @manager_employee_id
+                u.manager_id = @manager_employee_id AND
+                t.review_key IS NULL AND
+                t.reviewed_by_id IS NULL AND
+                t.review_at IS NULL
             ORDER BY
                 t.created_at DESC;
         END
