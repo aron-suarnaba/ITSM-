@@ -11,17 +11,24 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        $procedure = "
+        // 🚨 FIX: SQL Server compatible way to DROP PROCEDURE IF EXISTS 🚨
+        DB::statement("
+        IF OBJECT_ID('get_request_per_department', 'P') IS NOT NULL
+            DROP PROCEDURE get_request_per_department;
+    ");
+
+        // Now safely create the procedure
+        $sql = "
         CREATE PROCEDURE get_request_per_department (
             @manager_employee_id VARCHAR(255)
         )
         AS
         BEGIN
+            -- ... (rest of your SELECT query)
             SELECT
                 u.first_name,
                 u.last_name,
                 t.requested_by_id,
-                t.requested_date,
                 t.created_at,
                 t.needed_date,
                 t.requested_cat,
@@ -38,11 +45,10 @@ return new class extends Migration {
             WHERE
                 u.manager_id = @manager_employee_id
             ORDER BY
-                t.requested_date DESC;
+                t.created_at DESC;
         END
-                ";
-
-        DB::unprepared($procedure);
+    ";
+        DB::statement($sql);
     }
 
     /**
@@ -51,7 +57,10 @@ return new class extends Migration {
 
     public function down(): void
     {
-        // ✨ CRITICAL: Must use DB::unprepared() to drop a procedure
-        DB::unprepared('DROP PROCEDURE [get_request_per_department]');
+        // 🚨 SQL Server compatible way to drop the procedure on rollback 🚨
+        DB::statement("
+        IF OBJECT_ID('get_request_per_department', 'P') IS NOT NULL
+            DROP PROCEDURE get_request_per_department;
+    ");
     }
 };

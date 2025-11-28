@@ -25,31 +25,38 @@ class Tickets extends Model
     protected $fillable = [
         // Submission Phase
         'requested_by_id',
-        'requested_date',
         'needed_date',
+
         'requested_cat',
         'requested_details',
         'request_type',
         'detailed_description',
         'status',
+        'review_key',
 
         // Review/Assignment Phase (Can be null)
+        'reviewed_by_id',
+        'review_at',
+        'approve_key',
+        'review_rejected_notes',
+
+        'approved_by_id',
+        'approved_at',
         'ticket_number',
-        'datetime_received',
-        'received_by_id',
-        'acknowledge_by_id',
+        'approval_rejected_notes',
+
         'approximate_date',
-        'estimate_days',
+        'estimated_days',
+
+        'acknowledge_by_id',
         'assigned_to_id',
+        'datetime_received',
         'datetime_started',
         'datetime_finished',
         'detailed_description',
         'findings',
         'action_taken',
 
-        // Approval Phase (Can be null)
-        'reviewed_by_id',
-        'approved_by_id',
         'enduser_acceptance_id',
     ];
 

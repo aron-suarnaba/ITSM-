@@ -15,6 +15,8 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
+
+        // IT MANAGER
         User::create([
             'employee_id' => 'PPC0004',
             'site' => 'PI-SP',
@@ -33,6 +35,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('PPC0004'),
         ]);
 
+        // USERS MANAGER
         User::create([
             'employee_id' => 'PPC0000',
             'site' => 'PI-SP',
@@ -50,6 +53,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make('PPC0000'),
         ]);
+
 
         User::create([
             'employee_id' => 'PPC1187',
@@ -69,6 +73,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('PPC1187'),
         ]);
 
+        //MARKETING USERS
         User::create([
             'employee_id' => 'PPC1102',
             'site' => 'PI-SP',
@@ -87,8 +92,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('PPC1102'),
         ]);
 
-
-
+        // IT SPECIALIST
         User::create([
             'employee_id' => 'PPC0001',
             'site' => 'PI-SP',
@@ -107,7 +111,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('PPC0001'),
         ]);
 
-
+        // SUPERVISOR
         User::create([
             'employee_id' => 'PPC0002',
             'site' => 'PI-SP',
@@ -126,6 +130,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('PPC0002'),
         ]);
 
+        // IT CONSULTANT
         User::create([
             'employee_id' => 'PPC0003',
             'site' => 'PI-SP',

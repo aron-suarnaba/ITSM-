@@ -7,6 +7,7 @@ use App\Models\TicketGenerator;
 use App\Models\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class TicketsController extends Controller
 {
@@ -40,17 +41,18 @@ class TicketsController extends Controller
             'detailed_desc' => 'required|string',
         ]);
 
-
+        $reviewKey = (string) Str::uuid();
 
         $dataToSave = [
-            'requested_by_id'     => auth()->user()->employee_id,
-            'requested_date'      => now(),
-            'needed_date'         => $validatedData['needed_date'],
-            'requested_cat'       => $validatedData['reqCatSel'],
-            'requested_details'   => $validatedData['reqDetSel'] ?? null,
-            'request_type'        => $validatedData['reqTypeSel'],
-            'detailed_description'=> $validatedData['detailed_desc'],
-            'status'              => 'For Review',
+            'requested_by_id'           => auth()->user()->employee_id,
+            'requested_date'            => now(),
+            'needed_date'               => $validatedData['needed_date'],
+            'requested_cat'             => $validatedData['reqCatSel'],
+            'requested_details'         => $validatedData['reqDetSel'] ?? null,
+            'request_type'              => $validatedData['reqTypeSel'],
+            'detailed_description'      => $validatedData['detailed_desc'],
+            'status'                    => 'For Review',
+            'review_key'                => $reviewKey,
         ];
 
 
@@ -58,21 +60,38 @@ class TicketsController extends Controller
 
         event(new TicketsReviewDataDisplay($tickets));
 
-        return redirect()->route('request
-
-        ')
+        return redirect()->route('request')
             ->with('success', 'Request submitted successfully!');
 
     }
 
-    public function review(Request $request)
+    public function reviewApproved(Request $request)
     {
+        $managers_id = auth()->user()->employee_id;
+
+        $dataToSave = [
+            'received_by_id' => $managers_id,
+            'status' => 'For Approval'
+        ];
+
+        return redirect()->route('review')
+            ->with('success', 'Ticket successfully reviewed for final approval.');
+    }
+
+    public function reviewRejected(Request $request)
+    {
+
+        $dataToSave = [
+            'status' => 'Rejected on Review',
+        ];
 
     }
 
     public function approval(Request $request)
     {
+        $dataToSave = [
 
+        ];
     }
 
     /**

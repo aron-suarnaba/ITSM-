@@ -36,6 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/review', [ReviewController::class, 'usersRequestedTable'])
         ->name('review');
 
+    // Route::post('review'. [TicketsController::class, 'reviewApproved'])
+    //     ->name('review.approved');
+
     Route::get('/approval', function(){
         return view('approval');
     })->name('approval');

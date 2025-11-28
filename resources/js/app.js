@@ -6,8 +6,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import $ from "jquery";
-import '@tabler/core/dist/libs/list.js/dist/list.js';
-// import '@tabler/core/dist/js/tabler-theme.js';
+// import List from "list.js";
+// import List from '@tabler/core/dist/js/tabler-theme.js';
 
 window.toastr = toastr;
 window.bootstrap = bootstrap;

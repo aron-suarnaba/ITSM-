@@ -44,12 +44,17 @@
                         <div class="col-md-6 mb-2">
                             <strong>Requested Date:</strong> <span id="modal-requested-date"></span>
                         </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Requested Details:</strong> <span id="modal-requested-details"></span>
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12">
-                            <h4 class="h5 text-primary mb-2">Requested Details</h4>
-                            <p id="modal-requested-details" class="p-3 bg-white border rounded text-wrap"></p>
+                            <h4 class="h5 text-primary mb-2">Detailed Description</h4>
+                            <div id="modal-detailed-description" class="p-3 border rounded text-wrap"
+                                style="white-space: pre-wrap; min-height: 100px;">
+                            </div>
                         </div>
                     </div>
                 </div>

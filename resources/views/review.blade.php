@@ -17,12 +17,30 @@
 
 </x-layouts.app>
 
-@include('modals.review')
+@include('modals.reviewModals')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const reviewModal = document.getElementById("reviewModal");
 
-        reviewModal.addEventListener('show.bs.modal', function(event) {
+        // const listContainerId = 'table-review';
+
+        // // Define the classes List.js should look for inside the table rows
+        // // NOTE: These names must match the 'data-sort' attributes on your <th> buttons
+        // const valueNames = [
+        //     'requestor',
+        //     'category',
+        //     'request-time',
+        //     'date-needed'
+        // ];
+
+        // // Initialize List.js
+        // const list = new List(listContainerId, {
+        //     valueNames: valueNames,
+        //     // The class of the <tbody>, often 'list' or 'table-tbody'
+        //     listClass: 'list'
+        // });
+
+        reviewModal.addEventListener('show.bs.modal', function (event) {
             // Get the element that triggered the modal (the clicked <tr>)
             const button = event.relatedTarget;
 
@@ -36,6 +54,7 @@
             const requested_details = button.getAttribute('data-requested_details');
             const request_type = button.getAttribute('data-request_type');
             const status = button.getAttribute('data-status');
+            const detailed_description = button.getAttribute('detailed_description');
 
             // --- 2. Populate the Modal Elements ---
 
@@ -59,9 +78,9 @@
                 year: 'numeric', month: 'long', day: 'numeric'
             });
 
-            // Main Details
             reviewModal.querySelector('#modal-requested-details').textContent = requested_details;
 
+            reviewModal.querySelector('#modal-detailed-description').textContent = detailed_description;
             // OPTIONAL: Update the form action if your review/submit process needs the request ID
             // You would need to add data-request-id="$request->id" to your <tr>
             // const requestId = button.getAttribute('data-request-id');
