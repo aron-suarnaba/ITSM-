@@ -28,4 +28,3 @@
 </body>
 
 </html>
-@include('modals.request')

@@ -17,6 +17,26 @@
 
 </x-layouts.app>
 
+@if (session('success'))
+    <script>
+        $(document).ready(function () {
+            Toastify({
+                text: '{{session('success')}}',
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "center", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                onClick: function () { } // Callback after click
+            }).showToast();
+        });
+    </script>
+@endif
+
+@include('modals.request')
 @include('modals.requestDetailsModals')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -63,7 +83,7 @@
                     });
                 }
 
-                if (requestDetailsModal){
+                if (requestDetailsModal) {
                     requestDetailsModal.querySelector('#modal-request-requested-details').textContent = requested_details;
                 } else {
                     requestDetailsModal.querySelector('#modal-request-requested-details').textContent = "None";
