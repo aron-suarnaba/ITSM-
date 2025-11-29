@@ -19,9 +19,6 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="mb-3">
-                            <input type="text" name="search" id="" class="form-control" placeholder="Search">
-                        </div>
                         <div class="d-grid gap-2" role="group" aria-label="Request Categories">
                             <button type="button" class="btn btn-primary text-wrap RequestCatButton"
                                 id="TechSuppReqButton" data-bs-toggle="modal" data-bs-target="#requestModal">Technical
@@ -41,13 +38,13 @@
                     <div class="card-header">
                         <div class="card-title">Recently Ticket Request</div>
                     </div>
+
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-vcenter table-nowrap card-center mb-4">
+                            <table class="table table-vcenter card-center mb-4">
                                 <thead>
                                     <tr>
                                         <th>Date and Time Requested</th>
-                                        <th>Needed Date</th>
                                         <th>Request Category</th>
                                         <th>Request Type</th>
                                         <th>Status</th>
@@ -56,8 +53,8 @@
                                 <tbody>
                                     @forelse ($requests as $request)
                                         <tr class="fw-bold clickable-row" data-bs-toggle="modal"
-                                            data-bs-target="#requestDetailsModal" {{-- REMOVED: data-last_name and data-first_name
-                                            --}} {{-- DATE/TIME DATA REMAINS --}}
+                                            data-bs-target="#requestDetailsModal" {{-- REMOVED: data-last_name and
+                                            data-first_name --}} {{-- DATE/TIME DATA REMAINS --}}
                                             data-created_at="{{ $request->created_at->toDateTimeString() }}"
                                             data-needed_date="{{ $request->needed_date }}"
                                             data-requested_cat="{{ $request->requested_cat }}"
@@ -67,7 +64,6 @@
                                             data-status="{{ $request->status }}">
                                             {{-- Table Cells (td) for Request History --}}
                                             <td>{{ $request->created_at->format('g:i A, F j, Y ') }}</td>
-                                            <td>{{ $request->needed_date->format('F j, Y') }}</td>
                                             <td>{{ $request->requested_cat }}</td>
                                             <td>{{ $request->request_type }}</td>
                                             <td>
@@ -94,9 +90,10 @@
 
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+</div>

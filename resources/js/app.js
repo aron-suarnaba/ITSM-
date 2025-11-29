@@ -8,6 +8,8 @@ import "toastr/build/toastr.min.css";
 import $ from "jquery";
 // import List from "list.js";
 // import List from '@tabler/core/dist/js/tabler-theme.js';
+import Toastify from 'toastify-js';
+import "toastify-js/src/toastify.css";
 
 window.toastr = toastr;
 window.bootstrap = bootstrap;

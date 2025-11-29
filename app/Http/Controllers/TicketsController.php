@@ -44,15 +44,15 @@ class TicketsController extends Controller
         $reviewKey = (string) Str::uuid();
 
         $dataToSave = [
-            'requested_by_id'           => auth()->user()->employee_id,
-            'requested_date'            => now(),
-            'needed_date'               => $validatedData['needed_date'],
-            'requested_cat'             => $validatedData['reqCatSel'],
-            'requested_details'         => $validatedData['reqDetSel'] ?? null,
-            'request_type'              => $validatedData['reqTypeSel'],
-            'detailed_description'      => $validatedData['detailed_desc'],
-            'status'                    => 'For Review',
-            'review_key'                => $reviewKey,
+            'requested_by_id' => auth()->user()->employee_id,
+            'requested_date' => now(),
+            'needed_date' => $validatedData['needed_date'],
+            'requested_cat' => $validatedData['reqCatSel'],
+            'requested_details' => $validatedData['reqDetSel'] ?? null,
+            'request_type' => $validatedData['reqTypeSel'],
+            'detailed_description' => $validatedData['detailed_desc'],
+            'status' => 'For Review',
+            'review_key' => $reviewKey,
         ];
 
 
@@ -67,14 +67,43 @@ class TicketsController extends Controller
 
     public function reviewApproved(Request $request)
     {
+        // 1. Get the non-ID unique key from the request
+        $reviewKey = $request->input('review_key');
+
+        $approveKey = (string) Str::uuid();
+
+        // Stop if the key is missing or invalid
+        if (!$reviewKey) {
+            return redirect()->route('review')->with('error', 'Missing review key.');
+        }
+
+        // 2. Define data and authenticated user ID
         $managers_id = auth()->user()->employee_id;
 
-        $dataToSave = [
-            'received_by_id'    => $managers_id,
-            'status'            => 'For Approval',
+        $dataToUpdate = [
+            'reviewed_by_id'    => $managers_id,
+            'status'            => 'For Approval', // Status is set here
             'review_at'         => now(),
+            'approve_key'       => $approveKey,
         ];
 
+        try {
+            // 3. Find the record using the unique key and update it
+            // This method finds the first matching record and updates it directly in the database.
+            $updated = Tickets::where('review_key', $reviewKey)->update($dataToUpdate);
+
+            if ($updated === 0) {
+                // No record matched the review key.
+                return redirect()->route('review')->with('error', 'Request not found or already reviewed.');
+            }
+
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            \Log::error('Ticket update failed: ' . $e->getMessage());
+            return redirect()->route('review')->with('error', 'An error occurred during review.');
+        }
+
+        // 4. Redirect with success message
         return redirect()->route('review')
             ->with('success', 'Ticket successfully reviewed for approval.');
     }
