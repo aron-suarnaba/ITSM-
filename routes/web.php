@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TicketsController;
@@ -36,13 +37,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/review', [ReviewController::class, 'usersRequestedTable'])
         ->name('review');
 
-    Route::post('review', [TicketsController::class, 'reviewApproved'])
+    Route::post('/review', [TicketsController::class, 'reviewApproved'])
         ->name('review.approved');
 
-    Route::get('/approval', function(){
-        return view('approval');
-    })->name('approval');
+    // Route::get('/approval', function(){
+    //     return view('approval');
+    // })->name('approval');
 
+    Route::get('/approval/it-manager', [ApprovalController::class, 'usersApprovableTable'])
+        ->name('it-manager.approval');
+
+    Route::get('/approval', )
+        ->name('approval.tables');
 
     Route::get('/guides', function(){
         return view('guides');

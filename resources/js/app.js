@@ -11,6 +11,14 @@ import $ from "jquery";
 import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css";
 
+import 'tabulator-tables/dist/css/tabulator_bootstrap5.min.css';
+import { TabulatorFull as Tabulator } from "tabulator-tables";
+
+window.Tabulator = Tabulator;
+
+window.$ = $;
+window.jQuery = $;
+window.Toastify = Toastify;
 window.toastr = toastr;
 window.bootstrap = bootstrap;
 
