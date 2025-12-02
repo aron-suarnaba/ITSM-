@@ -48,6 +48,7 @@
                                          data-request_type="{{ $user->request_type }}" data-detailed_description="{{ $user->detailed_description }}"
                                          data-review_key="{{ $user->review_key }}" data-review_at="{{ $user->review_at }}"
                                          data-reviewed_by_id="{{ $user->reviewed_by_id }}"
+                                         data-approve-key="{{ $user->approve_key }}"
                                          data-bs-toggle="modal" data-bs-target="#ApprovalITManagerModal"
                                          >
                                             <td>{{ $user->last_name }}, {{ $user->first_name }}</td>

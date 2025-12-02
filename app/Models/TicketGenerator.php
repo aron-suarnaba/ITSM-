@@ -11,6 +11,8 @@ class TicketGenerator extends Model
 {
     use HasFactory;
 
+    protected $table = 'tickets';
+
     // ... (Your other model definitions like $fillable, $casts, relationships) ...
 
     /**

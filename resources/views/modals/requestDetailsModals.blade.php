@@ -2,7 +2,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="#" method="post">
+            <form action="{{ route('request.submit') }}" method="post">
                 @csrf
                 <input type="hidden" name="request_details_id" id="modal-request-details-id" value="">
 
@@ -35,7 +35,8 @@
                         </div>
 
                         <div class="col-md-6 mb-2">
-                            <strong>Request Type:</strong> <span id="modal-details-request-type" class="fw-bolder"></span>
+                            <strong>Request Type:</strong> <span id="modal-details-request-type"
+                                class="fw-bolder"></span>
                         </div>
 
                         <div class="col-md-6 mb-2">
@@ -51,6 +52,16 @@
                         <div class="col-sm-12 col-md-12">
                             <h4 class="h5 text-primary mb-2">Detailed Description</h4>
                             <textarea type="text" id="modal-request-detailed-description"
+                                class="container-fluid p-3 border rounded text-wrap"
+                                style="white-space: pre-wrap; min-height: 100px;" rows="7" disabled>
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="row" hidden>
+                        <div class="col-sm-12 col-md-12">
+                            <h4 class="h5 text-primary mb-2">Notes</h4>
+                            <textarea type="text" id="modal-request-rejection-notes"
                                 class="container-fluid p-3 border rounded text-wrap"
                                 style="white-space: pre-wrap; min-height: 100px;" rows="7" disabled>
                             </textarea>

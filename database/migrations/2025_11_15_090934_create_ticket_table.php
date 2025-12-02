@@ -61,8 +61,8 @@ return new class extends Migration {
             $table->date('approximate_date')->nullable();
             $table->integer('estimated_days')->nullable();
 
-            $table->text('findings')->nullable(); // Changed to text for potentially longer content
-            $table->text('action_taken')->nullable(); // Changed to text for potentially longer content
+            $table->text('findings')->nullable();
+            $table->text('action_taken')->nullable();
 
             // ------------------------------------------
             // IV. End-User Acceptance Phase

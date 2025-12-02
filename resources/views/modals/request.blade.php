@@ -2,7 +2,7 @@
 <div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalTitle">
     <div class="modal-dialog modal-dialog-lg modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="{{ route('tickets.submit') }}" method="post">
+            <form action="{{ route('request.submit') }}" method="post">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="requestModalTitle">Request</h5>
@@ -14,6 +14,7 @@
                         <div class="col-sm-12 col-md-6">
                             <label class="form-label">Request Category</label>
                             <select class="form-select" name="reqCatSel" id="requestCategorySelect" required>
+                                <option value="" placeholder="Please select Category" disabled selected>Options</option>
                                 <option value="Technical Support">Technical Support</option>
                                 <option value="Software & Applications">Software & Applications</option>
                                 <option value="Others">Others</option>
@@ -23,7 +24,7 @@
                         <div class="col-sm-12 col-md-6 d-none" id="requestDetailsContainer">
                             <label for="requestDetailSelect" class="form-label">Request Details</label>
                             <select class="form-select" name="reqDetSel" id="requestDetailSelect">
-                                <option value="" disabled selected>Options</option>
+                                <option value="" placeholder="Please select details" disabled selected>Options</option>
                             </select>
                         </div>
                     </div>
@@ -43,7 +44,7 @@
                     <div class="row mb-3">
                         <div class="col-sm-12 col-md-12">
                             <label for="DetailedDescription" class="form-label">Detailed Description of Request</label>
-                            <textarea name="detailed_desc" rows="8" id="DetailedDescription" class="form-control"
+                            <textarea name="detailed_desc" rows="5" id="DetailedDescription" class="form-control"
                                 placeholder="Type Here" required></textarea>
                         </div>
                     </div>

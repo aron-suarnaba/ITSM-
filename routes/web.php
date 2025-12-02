@@ -31,8 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/request', [RequestController::class, 'index'])
         ->name('request');
 
-    Route::post('/tickets', [TicketsController::class, 'submit'])
-        ->name('tickets.submit');
+    Route::post('/tickets', [RequestController::class, 'store'])
+        ->name('request.submit');
 
     Route::get('/review', [ReviewController::class, 'usersRequestedTable'])
         ->name('review');
@@ -44,11 +44,12 @@ Route::middleware('auth')->group(function () {
     //     return view('approval');
     // })->name('approval');
 
-    Route::get('/approval/it-manager', [ApprovalController::class, 'usersApprovableTable'])
-        ->name('it-manager.approval');
 
-    Route::get('/approval', )
-        ->name('approval.tables');
+    Route::get('/approval', [ApprovalController::class, 'index'])
+        ->name('approval.index');
+
+    Route::post('/approval', [ApprovalController::class, 'approve'])
+        ->name('approval.approve');
 
     Route::get('/guides', function(){
         return view('guides');

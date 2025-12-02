@@ -28,6 +28,7 @@
 
         const button = event.relatedTarget;
 
+
         const first_name = button.getAttribute('data-first_name');
         const last_name = button.getAttribute('data-last_name');
         const department = button.getAttribute('data-department');
@@ -45,7 +46,7 @@
         const review_key = button.getAttribute('data-review_key');
         const review_at = button.getAttribute('data-review_at');
         const review_by_id = button.getAttribute('data-reviewed_by_id');
-
+        const approve_key = button.getAttribute('data-approve-key');
 
         approvalModal.querySelector('#modal-approval-name').textContent = first_name + ' ' + last_name;
         approvalModal.querySelector('#modal-approval-site').textContent = site;
@@ -60,10 +61,11 @@
         approvalModal.querySelector('#modal-approval-review_by_id').textContent = review_by_id;
         approvalModal.querySelector('#modal-approval-review_at').textContent = review_at;
         approvalModal.querySelector('#modal-approval-detailed-description').value = detailed_description;
+        approvalModal.querySelector('#modal-approval-approval-key').value = approve_key;
+        approvalModal.querySelector('#modal-approval-review-key').value - review_key;
     });
     } else {
         console.error("Error: Modal element 'ApprovalITManagerModal' not found. ");
-    }
-    ;
+    };
 
 </script>

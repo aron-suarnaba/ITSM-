@@ -30,44 +30,13 @@ class TicketsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function submit(Request $request, Tickets $tickets)
+
+
+
+
+
+    public function store(Request $request)
     {
-
-        $validatedData = $request->validate([
-            'reqCatSel' => 'required|string|max:255',
-            'reqDetSel' => 'nullable|string',   // <-- correct
-            'reqTypeSel' => 'required|string|max:255',
-            'needed_date' => 'required|date',
-            'detailed_desc' => 'required|string',
-        ]);
-
-        $reviewKey = (string) Str::uuid();
-
-        $dataToSave = [
-            'requested_by_id' => auth()->user()->employee_id,
-            'requested_date' => now(),
-            'needed_date' => $validatedData['needed_date'],
-            'requested_cat' => $validatedData['reqCatSel'],
-            'requested_details' => $validatedData['reqDetSel'] ?? null,
-            'request_type' => $validatedData['reqTypeSel'],
-            'detailed_description' => $validatedData['detailed_desc'],
-            'status' => 'For Review',
-            'review_key' => $reviewKey,
-        ];
-
-
-        $ticket = Tickets::create($dataToSave);
-
-        event(new TicketsReviewDataDisplay($tickets));
-
-        return redirect()->route('request')
-            ->with('success', 'Request submitted successfully!');
-
-    }
-
-    public function reviewApproved(Request $request)
-    {
-        // 1. Get the non-ID unique key from the request
         $reviewKey = $request->input('review_key');
 
         $approveKey = (string) Str::uuid();
@@ -81,10 +50,10 @@ class TicketsController extends Controller
         $managers_id = auth()->user()->employee_id;
 
         $dataToUpdate = [
-            'reviewed_by_id'    => $managers_id,
-            'status'            => 'For Approval', // Status is set here
-            'review_at'         => now(),
-            'approve_key'       => $approveKey,
+            'reviewed_by_id' => $managers_id,
+            'status' => 'For Approval', // Status is set here
+            'review_at' => now(),
+            'approve_key' => $approveKey,
         ];
 
         try {
@@ -108,22 +77,30 @@ class TicketsController extends Controller
             ->with('success', 'Ticket successfully reviewed for approval.');
     }
 
-
-    public function reviewRejected(Request $request)
+    public function reject(Request $request)
     {
+        $reviewKey = $request->input('review_key');
+        $managers_id = auth()->user()->employee_id;
 
-        $dataToSave = [
+        if (!$reviewKey) {
+            return redirect()->route('review')->with('error', 'Missing review key for rejection.');
+        }
+
+        $updated = Tickets::where('review_key', $reviewKey)->update([
             'status' => 'Rejected on Review',
-        ];
+            'reviewed_by_id' => $managers_id,
+            'review_at' => now(),
+        ]);
 
+        if ($updated === 0) {
+            return redirect()->route('review')->with('error', 'Request not found or already processed.');
+        }
+
+        return redirect()->route('review')
+            ->with('success', 'Request successfully rejected.');
     }
 
-    public function approval(Request $request)
-    {
-        $dataToSave = [
 
-        ];
-    }
 
     /**
      * Display the specified resource.

@@ -11,7 +11,7 @@
     <div class="container-xl">
         <div class="row row-deck row-cards">
 
-            <div class="col-sm-12 col-md-3">
+            <div class="col-sm-12 col-md-3" style="max-height: 250px;">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
@@ -51,27 +51,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($requests as $request)
+                                    {{-- *** CHANGE $request to $item here *** --}}
+                                    @forelse ($requests as $item)
                                         <tr class="fw-bold clickable-row" data-bs-toggle="modal"
-                                            data-bs-target="#requestDetailsModal" {{-- REMOVED: data-last_name and
-                                            data-first_name --}} {{-- DATE/TIME DATA REMAINS --}}
-                                            data-created_at="{{ $request->created_at->toDateTimeString() }}"
-                                            data-needed_date="{{ $request->needed_date }}"
-                                            data-requested_cat="{{ $request->requested_cat }}"
-                                            data-requested_details="{{ $request->requested_details }}"
-                                            data-request_type="{{ $request->request_type }}"
-                                            data-detailed_description="{{ $request->detailed_description }}"
-                                            data-status="{{ $request->status }}">
+                                            data-bs-target="#requestDetailsModal" {{-- All data attributes must use $item
+                                            --}} data-created_at="{{ $item->created_at->toDateTimeString() }}"
+                                            data-needed_date="{{ $item->needed_date }}"
+                                            data-requested_cat="{{ $item->requested_cat }}"
+                                            data-requested_details="{{ $item->requested_details }}"
+                                            data-request_type="{{ $item->request_type }}"
+                                            data-detailed_description="{{ $item->detailed_description }}"
+                                            data-status="{{ $item->status }}">
+
                                             {{-- Table Cells (td) for Request History --}}
-                                            <td>{{ $request->created_at->format('g:i A, F j, Y ') }}</td>
-                                            <td>{{ $request->requested_cat }}</td>
-                                            <td>{{ $request->request_type }}</td>
+                                            <td>{{ $item->created_at->format('g:i A, F j, Y ') }}</td>
+                                            <td>{{ $item->requested_cat }}</td>
+                                            <td>{{ $item->request_type }}</td>
                                             <td>
                                                 {{-- Status Badge Logic Here --}}
-                                                @if ($request->status == 'For Review')
-                                                    <span class="badge bg-orange text-orange-fg">{{ $request->status }}</span>
-                                                @elseif ($request->status == 'For Approval')
-                                                    <span class="badge bg-cyan text-cyan-fg">{{ $request->status }}</span>
+                                                @if ($item->status == 'For Review')
+                                                    <span class="badge bg-orange text-orange-fg">{{ $item->status }}</span>
+                                                @elseif ($item->status == 'For Approval')
+                                                    <span class="badge bg-cyan text-cyan-fg">{{ $item->status }}</span>
                                                 @endif
                                                 {{-- ... other status conditions ... --}}
                                             </td>
@@ -85,6 +86,7 @@
                             </table>
 
                             <div class="row g-2 justify-content-center justify-content-sm-between mb-3">
+                                {{-- This call is now safe, referring to the collection passed from the controller --}}
                                 {{ $requests->links('pagination::bootstrap-5') }}
                             </div>
 
