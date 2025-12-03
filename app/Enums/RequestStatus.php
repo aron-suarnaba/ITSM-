@@ -3,16 +3,13 @@
 namespace App\Enums;
 
 enum RequestStatus: string {
-    // ➡️ Request Submission/Initial Stages
-    case FOR_REVIEW = 'For Review';
-    case REJECTED_ON_REVIEW = 'Rejected On Review';
 
     // ➡️ Approval Stages
     case FOR_APPROVAL = 'For Approval';
     case REJECTED_ON_APPROVAL = 'Rejected on Approval';
 
     // ➡️ IT/Processing Stages
-    case FOR_CHECKING = 'For Checking'; // Reviewal of IT Department
+    case FOR_CHECKING = 'For Review'; // Reviewal of IT Department
     case VOID = 'Void'; // Rejection for checking / permanently closed
 
     // ➡️ Ticket/Work Stages

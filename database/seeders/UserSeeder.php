@@ -14,27 +14,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-
-
-        // IT MANAGER
-        User::create([
-            'employee_id' => 'PPC0004',
-            'site' => 'PI-SP',
-            'first_name' => 'IT Manager',
-            'last_name' => 'Account',
-            'birthday' => Carbon::parse('1995-02-01'),
-            'gender' => 'Male',
-            'address' => '38 Dansalan St., Mandaluyong City, Metro Manila',
-            'contact' => '09170001003',
-            'department' => 'Information Technology',
-            'manager_id' => 'PPC0004',
-            'position' => 'Manager',
-            'privilege' => 'Admin',
-            'email' => 'it_manager@printwell.com.ph',
-            'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('PPC0004'),
-        ]);
-
         // USERS MANAGER
         User::create([
             'employee_id' => 'PPC0000',
@@ -51,26 +30,7 @@ class UserSeeder extends Seeder
             'privilege' => 'User',
             'email' => 'manager@printwell.com.ph',
             'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('PPC0000'),
-        ]);
-
-
-        User::create([
-            'employee_id' => 'PPC1187',
-            'site' => 'PI-SP',
-            'first_name' => 'Aron Kyle',
-            'last_name' => 'Suarnaba',
-            'birthday' => Carbon::parse('2002-05-07'),
-            'gender' => 'Male',
-            'address' => '777 Lunas St., Brgy. Malamig, Mandaluyong City, Metro Manila',
-            'contact' => '09072927198',
-            'department' => 'Information Technology',
-            'manager_id' => 'PPC0004',
-            'position' => 'System Analyst Programmer',
-            'privilege' => 'Superadmin',
-            'email' => 'aron.suarnaba@printwell.com.ph',
-            'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('PPC1187'),
+            'password' => Hash::make('pass123'),
         ]);
 
         //MARKETING USERS
@@ -89,8 +49,9 @@ class UserSeeder extends Seeder
             'privilege' => 'User',
             'email' => 'hannah.agustin@printwell.com.ph',
             'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('PPC1102'),
+            'password' => Hash::make('pass123'),
         ]);
+
 
         // IT SPECIALIST
         User::create([
@@ -108,7 +69,7 @@ class UserSeeder extends Seeder
             'privilege' => 'User',
             'email' => 'technical.support@printwell.com.ph',
             'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('PPC0001'),
+            'password' => Hash::make('pass123'),
         ]);
 
         // SUPERVISOR
@@ -127,7 +88,7 @@ class UserSeeder extends Seeder
             'privilege' => 'Admin',
             'email' => 'supervisor@printwell.com.ph',
             'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('PPC0002'),
+            'password' => Hash::make('pass123'),
         ]);
 
         // IT CONSULTANT
@@ -146,7 +107,45 @@ class UserSeeder extends Seeder
             'privilege' => 'Admin',
             'email' => 'it_consultant@printwell.com.ph',
             'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('PPC0003'),
+            'password' => Hash::make('pass123'),
+        ]);
+
+        User::create([
+            'employee_id' => 'PPC1187',
+            'site' => 'PI-SP',
+            'first_name' => 'Aron Kyle',
+            'last_name' => 'Suarnaba',
+            'birthday' => Carbon::parse('2002-05-07'),
+            'gender' => 'Male',
+            'address' => '777 Lunas St., Brgy. Malamig, Mandaluyong City, Metro Manila',
+            'contact' => '09072927198',
+            'department' => 'Information Technology',
+            'manager_id' => 'PPC0004',
+            'position' => 'System Analyst Programmer',
+            'privilege' => 'Superadmin',
+            'email' => 'aron.suarnaba@printwell.com.ph',
+            'email_verified_at' => Carbon::now(),
+            'password' => Hash::make('pass123'),
+        ]);
+
+
+        // IT MANAGER
+        User::create([
+            'employee_id' => 'PPC0004',
+            'site' => 'PI-SP',
+            'first_name' => 'IT Manager',
+            'last_name' => 'Account',
+            'birthday' => Carbon::parse('1995-02-01'),
+            'gender' => 'Male',
+            'address' => '38 Dansalan St., Mandaluyong City, Metro Manila',
+            'contact' => '09170001003',
+            'department' => 'Information Technology',
+            'manager_id' => 'PPC0004',
+            'position' => 'IT Manager',
+            'privilege' => 'Admin',
+            'email' => 'it_manager@printwell.com.ph',
+            'email_verified_at' => Carbon::now(),
+            'password' => Hash::make('pass123'),
         ]);
 
 

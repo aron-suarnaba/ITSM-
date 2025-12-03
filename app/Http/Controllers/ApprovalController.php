@@ -13,7 +13,7 @@ class ApprovalController extends Controller
     public function index()
     {
 
-        $users = DB::select('EXEC get_review_per_department');
+        $users = DB::select('EXEC get_request_per_department');
 
         foreach ($users as $user) {
 

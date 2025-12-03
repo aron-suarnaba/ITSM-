@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RequestStatus;
 use App\Events\RequestStatusUpdated;
 use Illuminate\Http\Request;
 use App\Models\Requests;
@@ -42,7 +43,7 @@ class RequestController extends Controller
             'requested_details' => $validatedData['reqDetSel'] ?? null,
             'request_type' => $validatedData['reqTypeSel'],
             'detailed_description' => $validatedData['detailed_desc'],
-            'status' => 'For Review',
+            'status' => RequestStatus::FOR_APPROVAL->value,
             'review_key' => $reviewKey,
         ];
 

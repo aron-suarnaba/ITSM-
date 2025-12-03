@@ -52,14 +52,12 @@
         let badgeClass = "bg-secondary";
 
         const statusMap = {
-            "for review": "bg-orange text-orange-fg",
-            "rejected on review": "bg-red text-red-fg",
-            "for approval": "bg-cyan text-cyan-fg",
+            "for approval": "bg-blue text-blue-fg",
             "rejected on approval": "bg-red text-red-fg",
             "for checking": "bg-yellow text-yellow-fg",
-            "void": "bg-dark text-dark-fg",
-            "open ticket": "bg-blue text-blue-fg",
-            "working on ticket": "bg-purple text-purple-fg",
+            "void": "bg-default text-default-fg",
+            "open ticket": "bg-light text-light-fg",
+            "working on ticket": "bg-orange text-orange-fg",
             "complete": "bg-green text-green-fg",
         };
 
@@ -289,7 +287,6 @@
             RequestTypeContainer.classList.add("d-none");
         }
     });
-
 </script>
 
 @include('modals.requestDetailsModals')

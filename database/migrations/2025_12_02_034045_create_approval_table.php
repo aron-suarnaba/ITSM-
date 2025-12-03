@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('ticket_number')->nullable();
 
             $table->string('approval_rejected_notes')->nullable();
+            $table->string('void_at')->nullable();
 
             $table->foreign('approved_by_id')->references('employee_id')->on('users');
         });

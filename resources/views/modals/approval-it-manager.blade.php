@@ -6,8 +6,6 @@
                 @csrf
 
                 <input type="hidden" name="review_key" id="modal-review-key-input">
-                <input type="hidden" name="approve_key" id="modal-approve-key-input">
-
                 <div class="modal-header">
                     <h5 class="modal-title" id="ApprovalITManagerModalTitle">Review Request
                     </h5>

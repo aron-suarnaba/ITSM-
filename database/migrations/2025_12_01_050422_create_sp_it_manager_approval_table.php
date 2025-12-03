@@ -13,39 +13,36 @@ return new class extends Migration {
     {
         // 🚨 FIX: SQL Server compatible way to DROP PROCEDURE IF EXISTS 🚨
         DB::statement("
-        IF OBJECT_ID('get_review_per_department', 'P') IS NOT NULL
-            DROP PROCEDURE get_review_per_department;
+        IF OBJECT_ID('get_request_per_department', 'P') IS NOT NULL
+            DROP PROCEDURE get_request_per_department;
     ");
 
         // Now safely create the procedure
         $sql = "
-        CREATE PROCEDURE get_review_per_department
+        CREATE PROCEDURE get_request_per_department
         AS
         BEGIN
-            SELECT
-            t.id, t.created_at, t.updated_at,
-            t.status, t.requested_by_id, t.needed_date,
-            t.requested_cat, t.requested_details,
-            t.request_type, t.detailed_description,
-            t.review_key, t.reviewed_by_id, t.review_at,
-            u.first_name, u.last_name, u.department,
-            u.site, u.position, u.manager_id
+        SELECT
+            u.employee_id, u.site, u.first_name, u.last_name,
+            u.department, u.position, u.manager_id,
+            r.id, r.created_at, r.status, r.requested_by_id,
+            r.needed_date, r.requested_cat, r.requested_details,
+            r.request_type, r.detailed_description, r.review_key
         FROM
-            dbo.tickets t
+            dbo.requests r
         INNER JOIN
-            dbo.users u ON t.requested_by_id = u.employee_id
+            dbo.users u ON r.requested_by_id = u.employee_id
         WHERE
-            t.review_key IS NOT NULL AND
-            t.review_at IS NOT NULL AND
-            t.reviewed_by_id IS NOT NULL AND
-            t.approve_key IS NULL AND
-            t.approved_at IS NULL AND
-            t.approved_by_id IS NULL AND
-            (
-                t.requested_details IS NULL OR
-                t.requested_details NOT IN ('TRE', 'HRIS', 'ERP Syteline System')
+            r.review_key IS NOT NULL AND
+            (r.status = 'For Approval' OR
+            r.status = 'Rejected on Approval'
             )
-        ORDER BY review_at DESC;
+            AND
+            (
+                r.requested_details IS NULL OR
+                r.requested_details NOT IN ('TRE', 'HRIS', 'ERP Syteline System')
+            )
+        ORDER BY r.created_at DESC;
         END
     ";
         DB::statement($sql);
@@ -59,8 +56,8 @@ return new class extends Migration {
     {
         // 🚨 SQL Server compatible way to drop the procedure on rollback 🚨
         DB::statement("
-        IF OBJECT_ID('get_review_per_department', 'P') IS NOT NULL
-            DROP PROCEDURE get_review_per_department;
+        IF OBJECT_ID('get_request_per_department', 'P') IS NOT NULL
+            DROP PROCEDURE get_request_per_department;
     ");
     }
 };

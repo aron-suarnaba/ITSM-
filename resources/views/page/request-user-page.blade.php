@@ -2,7 +2,19 @@
     <div class="container-xl">
         <div class="row g-2 align-items-center">
             <div class="col">
-                <h2 class="page-title">Ticket Request</h2>
+                <h2 class="page-title">
+                    <ol class="breadcrumb" aria-label="breadcrumbs">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('dashboard') }}">
+                                Home
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <a href="#">Request</a>
+                        </li>
+                    </ol>
+
+                </h2>
             </div>
         </div>
     </div>

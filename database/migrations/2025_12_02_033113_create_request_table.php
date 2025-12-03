@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->id();
             $table->timestamps();
             $table->enum('status', array_column(RequestStatus::cases(), 'value'))
-                ->default(RequestStatus::FOR_REVIEW->value);
+                ->default(RequestStatus::FOR_APPROVAL->value);
 
             $table->string('requested_by_id');
             $table->date('needed_date');
@@ -25,6 +25,9 @@ return new class extends Migration {
             $table->string('request_type');
             $table->text('detailed_description');
             $table->uuid('review_key')->nullable();
+
+            $table->string('reject_on_approval_notes')->nullable();
+            $table->dateTime('reject_at')->nullable();
 
             $table->foreign('requested_by_id')->references('employee_id')->on('users');
         });

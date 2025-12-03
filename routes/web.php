@@ -34,11 +34,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/tickets', [RequestController::class, 'store'])
         ->name('request.submit');
 
-    Route::get('/review', [ReviewController::class, 'usersRequestedTable'])
-        ->name('review');
+    // Route::get('/review', [ReviewController::class, 'usersRequestedTable'])
+    //     ->name('review');
 
-    Route::post('/review', [TicketsController::class, 'reviewApproved'])
-        ->name('review.approved');
+    // Route::post('/review', [TicketsController::class, 'reviewApproved'])
+    //     ->name('review.approved');
 
     // Route::get('/approval', function(){
     //     return view('approval');

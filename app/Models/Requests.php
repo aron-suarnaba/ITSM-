@@ -35,6 +35,8 @@ class Requests extends Model
         'request_type',
         'detailed_description',
         'review_key',
+        'reject_on_approval_notes',
+        'reject_at',
     ];
 
     /**
@@ -46,6 +48,7 @@ class Requests extends Model
     protected $casts = [
         'needed_date' => 'date', // Casts the needed_date string to a Carbon object
         'status' => RequestStatus::class, // Casts the status string to your RequestStatus Enum
+        'reject_at' => 'dateTime'
     ];
 
     // --- Relationships ---
@@ -63,11 +66,11 @@ class Requests extends Model
     /**
      * Get the associated Review record.
      */
-    public function review()
-    {
-        // Link to the 'review' table using the custom 'review_key'
-        return $this->hasOne(Review::class, 'review_key', 'review_key');
-    }
+    // public function review()
+    // {
+    //     // Link to the 'review' table using the custom 'review_key'
+    //     return $this->hasOne(Review::class, 'review_key', 'review_key');
+    // }
 
     /**
      * Get the associated Approval record. (Assumes an Approval model exists)
