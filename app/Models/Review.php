@@ -70,6 +70,6 @@ class Review extends Model
         // This assumes the 'request' model links back using the 'review_key'
         // where the foreign key on the 'request' table is 'review_key'
         // and the local key on the 'review' table is 'review_key'.
-        return $this->hasOne(Request::class, 'review_key', 'review_key');
+        return $this->hasOne(Requests::class, 'review_key', 'review_key');
     }
 }

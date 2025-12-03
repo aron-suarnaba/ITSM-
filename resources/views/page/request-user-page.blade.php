@@ -11,7 +11,7 @@
     <div class="container-xl">
         <div class="row row-deck row-cards">
 
-            <div class="col-sm-12 col-md-3" style="max-height: 250px;">
+            <div class="col-sm-12 col-md-3" style="max-height: 230px;">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
@@ -54,13 +54,13 @@
                                     {{-- *** CHANGE $request to $item here *** --}}
                                     @forelse ($requests as $item)
                                         <tr class="fw-bold clickable-row" data-bs-toggle="modal"
-                                            data-bs-target="#requestDetailsModal" {{-- All data attributes must use $item
-                                            --}} data-created_at="{{ $item->created_at->toDateTimeString() }}"
-                                            data-needed_date="{{ $item->needed_date }}"
-                                            data-requested_cat="{{ $item->requested_cat }}"
-                                            data-requested_details="{{ $item->requested_details }}"
-                                            data-request_type="{{ $item->request_type }}"
-                                            data-detailed_description="{{ $item->detailed_description }}"
+                                            data-bs-target="#requestDetailsModal"
+                                            data-created-at="{{ $item->created_at->toDateTimeString() }}"
+                                            data-needed-date="{{ $item->needed_date }}"
+                                            data-requested-cat="{{ $item->requested_cat }}"
+                                            data-requested-details="{{ $item->requested_details }}"
+                                            data-request-type="{{ $item->request_type }}"
+                                            data-detailed-description="{{ $item->detailed_description }}"
                                             data-status="{{ $item->status }}">
 
                                             {{-- Table Cells (td) for Request History --}}

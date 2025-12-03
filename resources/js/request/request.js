@@ -1,17 +1,3 @@
-// resources/js/request.js
-
-import Echo from "laravel-echo";
-
-// Ensure your broadcasting provider is configured here
-window.Echo = new Echo({
-    // ... config details (broadcaster, key, etc.)
-});
-
-
-// =========================================================
-// ✅ FIX 1: MOVE HELPER FUNCTION OUT OF DOMContentLoaded SCOPE
-// =========================================================
-
 function getStatusBadgeHtml(status) {
     if (!status) return `<span class="badge bg-secondary">Unknown</span>`;
 
@@ -31,7 +17,6 @@ function getStatusBadgeHtml(status) {
     };
 
     for (const key in statusMap) {
-        // Use exact match for keys to be more specific, or includes if intended
         if (s.includes(key)) {
             badgeClass = statusMap[key];
             break;
@@ -41,8 +26,8 @@ function getStatusBadgeHtml(status) {
     return `<span class="badge ${badgeClass}">${status}</span>`;
 }
 
-
-// --- DOM CONTENT LOADED LOGIC (Primary Event Listeners) ---
+// Make it globally available on window
+window.getStatusBadgeHtml = getStatusBadgeHtml;
 
 document.addEventListener("DOMContentLoaded", function () {
     const requestDetailsModal = document.getElementById("requestDetailsModal");
@@ -50,9 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const RequestCatSelect = document.getElementById("requestCategorySelect");
     const RequestCatButton = document.querySelectorAll(".RequestCatButton");
     const requestDetailSelect = document.getElementById("requestDetailSelect");
-    const requestDetailsContainer = document.getElementById("requestDetailsContainer");
+    const requestDetailsContainer = document.getElementById(
+        "requestDetailsContainer"
+    );
     const RequestTypeSelect = document.getElementById("RequestTypeSelect");
-    const RequestTypeContainer = document.getElementById("requestTypeContainer");
+    const RequestTypeContainer = document.getElementById(
+        "requestTypeContainer"
+    );
 
     const TechnicalSupportReqDet = [
         "Programs/Application Installation/Re-Install",
@@ -92,53 +81,85 @@ document.addEventListener("DOMContentLoaded", function () {
         requestDetailsModal.addEventListener("show.bs.modal", function (event) {
             const button = event.relatedTarget;
             const {
-                requestedCat,
                 createdAt,
                 neededDate,
+                requestedCat,
                 requestedDetails,
                 requestType,
-                status, // Status data attribute value
+                status,
                 detailedDescription,
             } = button.dataset;
 
-            // ... (Other fields remain textContent) ...
-            requestDetailsModal.querySelector("#modal-details-request-type").textContent = requestType || "N/A";
-            requestDetailsModal.querySelector("#modal-request-requested-cat").textContent = requestedCat || "N/A";
-
-            // ✅ FIX 2: Use innerHTML and getStatusBadgeHtml for the status
-            requestDetailsModal.querySelector("#modal-request-status").innerHTML = getStatusBadgeHtml(status);
+            requestDetailsModal.querySelector(
+                "#modal-request-requested-cat"
+            ).textContent = requestedCat || "N/A";
+            requestDetailsModal.querySelector(
+                "#modal-request-status"
+            ).innerHTML = getStatusBadgeHtml(status);
+            requestDetailsModal.querySelector(
+                "#modal-request-requested-details"
+            ).textContent = requestedDetails || "None";
+            requestDetailsModal.querySelector(
+                "#modal-details-request-type"
+            ).textContent = requestType || "N/A";
 
             const dateOptions = {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
             };
-
             if (createdAt) {
-                requestDetailsModal.querySelector("#modal-request-created-at").textContent = new Date(createdAt).toLocaleDateString(
+                requestDetailsModal.querySelector(
+                    "#modal-request-created-at"
+                ).textContent = new Date(createdAt).toLocaleDateString(
                     "en-US",
-                    {
-                        ...dateOptions,
-                        hour: "2-digit",
-                        minute: "2-digit",
-                    }
+                    { ...dateOptions, hour: "2-digit", minute: "2-digit" }
                 );
             }
 
-            // NOTE: You are missing the 'Requested Date' field from the modal HTML here.
-            // If you have a data attribute for 'requestedDate', you should map it here as well.
-
             if (neededDate) {
-                requestDetailsModal.querySelector("#modal-request-needed-date").textContent = new Date(neededDate).toLocaleDateString(
+                requestDetailsModal.querySelector(
+                    "#modal-request-requested-date"
+                ).textContent = new Date(neededDate).toLocaleDateString(
                     "en-US",
                     dateOptions
                 );
             }
 
-            requestDetailsModal.querySelector("#modal-request-requested-details").textContent = requestedDetails || "None";
+            // populate textarea (do NOT clear it immediately)
+            const descEl = requestDetailsModal.querySelector(
+                "#modal-request-detailed-description"
+            );
+            if (descEl)
+                descEl.value = detailedDescription
+                    ? detailedDescription.trim()
+                    : "No description provided";
+        });
 
-            // Fix for textarea display (remove extra whitespace from the template)
-            requestDetailsModal.querySelector("#modal-request-detailed-description").textContent = detailedDescription ? detailedDescription.trim() : "No description provided";
+        requestDetailsModal.addEventListener("hidden.bs.modal", function () {
+            // Clear all modal fields (use .value for textarea)
+            requestDetailsModal.querySelector(
+                "#modal-request-requested-cat"
+            ).textContent = "";
+            requestDetailsModal.querySelector(
+                "#modal-request-status"
+            ).innerHTML = "";
+            requestDetailsModal.querySelector(
+                "#modal-request-requested-details"
+            ).textContent = "";
+            requestDetailsModal.querySelector(
+                "#modal-details-request-type"
+            ).textContent = "";
+            requestDetailsModal.querySelector(
+                "#modal-request-created-at"
+            ).textContent = "";
+            requestDetailsModal.querySelector(
+                "#modal-request-needed-date"
+            ).textContent = "";
+            const descEl = requestDetailsModal.querySelector(
+                "#modal-request-detailed-description"
+            );
+            if (descEl) descEl.value = "";
         });
     }
 
@@ -221,40 +242,3 @@ document.addEventListener("DOMContentLoaded", function () {
         RequestTypeContainer.classList.add("d-none");
     }
 });
-
-
-// --- REAL-TIME ECHO LISTENER (Now has access to getStatusBadgeHtml) ---
-window.Echo.private("requests.status.manager").listen(
-    ".status.updated",
-    (e) => {
-        console.log("Real-time update received:", e);
-
-        const updatedRequest = e.request;
-        const newStatus = e.new_status || updatedRequest.status;
-        const requestId = updatedRequest.id;
-
-        const tableRow = document.querySelector(
-            `tr[data-request-id="${requestId}"]`
-        );
-
-        if (!tableRow) {
-            console.warn(`Row for Request ID ${requestId} not found.`);
-            return;
-        }
-
-        const statusCell = tableRow.querySelector(".request-status-cell");
-        if (statusCell) {
-            statusCell.innerHTML = getStatusBadgeHtml(newStatus);
-        }
-
-        const reviewedByCell = tableRow.querySelector(".reviewed-by-cell");
-        if (reviewedByCell) {
-            reviewedByCell.textContent =
-                updatedRequest.reviewed_by?.name || "N/A";
-        }
-
-        // Highlight animation
-        tableRow.classList.add("highlight-update");
-        setTimeout(() => tableRow.classList.remove("highlight-update"), 3000);
-    }
-);

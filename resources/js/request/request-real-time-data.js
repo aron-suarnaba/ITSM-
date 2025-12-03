@@ -1,9 +1,3 @@
-import Echo from "laravel-echo";
-
-// Ensure your broadcasting provider is configured here
-window.Echo = new Echo({
-    // ... config details (broadcaster, key, etc.)
-});
 window.Echo.private("requests.status.manager").listen(
     ".status.updated",
     (e) => {

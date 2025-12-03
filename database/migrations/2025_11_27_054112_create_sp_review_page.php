@@ -26,29 +26,22 @@ return new class extends Migration {
         BEGIN
             -- ... (rest of your SELECT query)
             SELECT
-                u.first_name,
-                u.last_name,
-                t.requested_by_id,
-                t.created_at,
-                t.needed_date,
-                t.requested_cat,
-                t.requested_details,
-                t.request_type,
-                t.detailed_description,
-                t.[status]
-            FROM
-                tickets t
-            INNER JOIN
-                users u
-            ON
-                t.requested_by_id = u.employee_id
-            WHERE
-                u.manager_id = @manager_employee_id AND
-                t.review_key IS NULL AND
-                t.reviewed_by_id IS NULL AND
-                t.review_at IS NULL
-            ORDER BY
-                t.created_at DESC;
+				r.id, r.created_at, r.status, r.requested_by_id, r.needed_date,
+				r.requested_cat, r.requested_details, r.request_type, r.detailed_description,
+				r.review_key, u.employee_id, u.site, u.first_name, u.last_name, u.department, u.manager_id,
+				u.position
+			FROM
+				requests r
+			INNER JOIN
+				users u
+			ON
+				r.requested_by_id = u.employee_id
+			WHERE
+				u.manager_id = @manager_employee_id AND
+				r.review_key IS NOT NULL
+			ORDER BY
+				r.created_at
+
         END
     ";
         DB::statement($sql);
