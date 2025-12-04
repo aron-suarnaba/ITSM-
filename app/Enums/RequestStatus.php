@@ -9,8 +9,8 @@ enum RequestStatus: string {
     case REJECTED_ON_APPROVAL = 'Rejected on Approval';
 
     // ➡️ IT/Processing Stages
-    case FOR_CHECKING = 'For Review'; // Reviewal of IT Department
-    case VOID = 'Void'; // Rejection for checking / permanently closed
+    case FOR_CHECKING = 'For Checking'; // Reviewal of IT Department
+    case VOID = 'Void';
 
     // ➡️ Ticket/Work Stages
     case OPEN_TICKET = 'Open Ticket';
@@ -38,7 +38,6 @@ enum RequestStatus: string {
     public static function getTerminalStatuses(): array
     {
         return [
-            self::REJECTED_ON_REVIEW->value,
             self::REJECTED_ON_APPROVAL->value,
             self::VOID->value,
             self::COMPLETE->value,

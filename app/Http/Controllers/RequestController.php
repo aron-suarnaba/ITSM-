@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Enums\RequestStatus;
 use App\Events\RequestStatusUpdated;
 use Illuminate\Http\Request;
-use App\Models\Requests;
 use Illuminate\Support\Str;
+use App\Models\Requests;
+use App\Models\Approval;
 
 
 class RequestController extends Controller
@@ -49,6 +50,7 @@ class RequestController extends Controller
 
 
         $createdRequest = Requests::create($dataToSave);
+
 
         event(new RequestStatusUpdated($createdRequest));
 

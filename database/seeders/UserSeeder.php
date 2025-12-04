@@ -84,7 +84,7 @@ class UserSeeder extends Seeder
             'contact' => '09170001003',
             'department' => 'Information Technology',
             'manager_id' => 'PPC0004',
-            'position' => 'Supervisor',
+            'position' => 'IT Supervisor',
             'privilege' => 'Admin',
             'email' => 'supervisor@printwell.com.ph',
             'email_verified_at' => Carbon::now(),

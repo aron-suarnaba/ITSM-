@@ -77,7 +77,7 @@ class Requests extends Model
      */
     public function approval()
     {
-        return $this->hasOne(Approval::class, 'review_key', 'review_key');
+        return $this->hasMany(Approval::class, 'review_key', 'review_key');
     }
 
     /**

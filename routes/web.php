@@ -4,6 +4,7 @@ use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\Assignment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -50,6 +51,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/approval', [ApprovalController::class, 'approve'])
         ->name('approval.approve');
+
+    Route::get('assignment',[Assignment::class, 'index'])
+        ->name('assignment.index');
 
     Route::get('/guides', function(){
         return view('guides');

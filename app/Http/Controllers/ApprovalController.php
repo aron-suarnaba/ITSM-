@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RequestStatus;
+use App\Events\RequestStatusUpdated;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\TicketGenerator;
-use App\Models\Tickets;
+use App\Models\Approval;
+use App\Models\Requests;
 
 class ApprovalController extends Controller
 {
@@ -22,7 +25,7 @@ class ApprovalController extends Controller
             }
 
             if (isset($user->created_at)) {
-                $user->created_at = Carbon::parse($user->created_at)->format('');
+                $user->created_at = Carbon::parse($user->created_at);
             }
 
         }
@@ -30,40 +33,32 @@ class ApprovalController extends Controller
         return view('it-manager-approval', compact('users'));
     }
 
-    public function approve(Request $request)
-    {
+    // App\Http\Controllers/ApprovalController.php
 
-        $myId = auth()->user()->employee_id;
+   // App\Http\Controllers/ApprovalController.php
 
-        $reviewKey = $request->input('review_key');
-        $approveKey = $request->input('approve_key');
+public function approve(Request $request)
+{
+    $myId = auth()->user()->employee_id;
 
-        $request = Tickets::where('review_key', $reviewKey)
-            ->where('approve_key', $approveKey)
-            ->first();
+    $reviewKey = $request->input('review_key');
+    $requestCategory = $request->input('request_category');
 
 
-        if ($request) {
 
-            $requestCategory = $request->requested_cat;
+    $approveLogData = [
+        'status' => RequestStatus::FOR_CHECKING->value,
+        'review_key' => $reviewKey,
+        'ticket_number' => TicketGenerator::generateTicketNumber($requestCategory),
+        'approved_by_id' => $myId,
+    ];
 
-            $ticketNumber = TicketGenerator::generateTicketNumber($requestCategory);
+    Approval::create($approveLogData);
 
-            $request->update([
-                'status' => 'Approved',
-                'approved_by_id' => $myId,
-                'approved_at' => now(),
-                'ticket_number' => $ticketNumber,
-            ]);
-
-            return redirect()->route('approval.index')->with('success', 'Request has been successfully approved and ticket number ' . $ticketNumber . ' was assigned.');
-
-        } else {
-
-            return redirect()->route('approval.index')->with('error', 'Approval Failed: Ticket key number was mismatch or ticket was not found');
-
-        }
-    }
+    // --- Phase 4: Redirect ---
+    return redirect()->route('approval.index')
+        ->with('success', 'Request approved and submitted for checking successfully!');
+}
 
 
 }

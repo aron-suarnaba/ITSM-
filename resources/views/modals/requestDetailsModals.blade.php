@@ -23,8 +23,7 @@
                         </div>
 
                         <div class="col-md-6 mb-2">
-                            <strong>Status:</strong> <span id="modal-request-status"
-                                class="badge text-bg-warning"></span>
+                            <strong>Status:</strong> <span id="modal-request-status"></span>
                         </div>
                         <div class="col-md-6 mb-2">
                             <strong>Requested Details:</strong> <span id="modal-request-requested-details"></span>

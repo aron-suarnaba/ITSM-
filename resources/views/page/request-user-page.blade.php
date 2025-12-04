@@ -63,7 +63,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- *** CHANGE $request to $item here *** --}}
                                     @forelse ($requests as $item)
                                         <tr class="fw-bold clickable-row" data-bs-toggle="modal"
                                             data-bs-target="#requestDetailsModal"

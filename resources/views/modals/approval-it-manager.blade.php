@@ -6,6 +6,7 @@
                 @csrf
 
                 <input type="hidden" name="review_key" id="modal-review-key-input">
+                <input type="hidden" name="request_category" id="modal-request-category-input">
                 <div class="modal-header">
                     <h5 class="modal-title" id="ApprovalITManagerModalTitle">Review Request
                     </h5>
@@ -50,20 +51,6 @@
                         </div>
                         <div class="col-sm-12 col-md-6 mb-2">
                             <strong>Needed Date:</strong> <span id="modal-approval-needed_date"></span>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3 pb-3 border-bottom">
-                        <div class="col-12">
-                            <h1 class="h5 text-primary">
-                                Review
-                            </h1>
-                        </div>
-                        <div class="col-sm-12 col-md-6 mb-2">
-                            <strong>Reviewed By:</strong> <span id="modal-approval-review_by_id"></span>
-                        </div>
-                        <div class="col-sm-12 col-md-6 mb-2">
-                            <strong>Reviewed Date:</strong> <span id="modal-approval-review_at"></span>
                         </div>
                     </div>
 

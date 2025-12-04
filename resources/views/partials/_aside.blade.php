@@ -84,7 +84,7 @@
 
                         {{-- 2. IT Personnel Assignation View --}}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('assignment.index') }}">
                                 <i class="icon icon-tabler icons-tabler-outline icon-tabler-users-plus me-2"></i>
                                 <span>IT Personnel Assignation</span>
                             </a>

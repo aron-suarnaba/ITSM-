@@ -23,10 +23,11 @@ class Approval extends Model
      */
     protected $fillable = [
         'status',
-        'approved_at',
-        'approve_key',
+        'approved_by_id',
         'ticket_number',
         'approval_rejected_notes',
+        'void_at',
+        'review_key',
     ];
 
     /**
@@ -34,7 +35,9 @@ class Approval extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'approved_at' => 'datetime', // Casts the DB value to a Carbon instance
-    ];
+
+    public function requests()
+    {
+        return $this->belongsTo(Requests::class, 'review_key', 'review_key');
+    }
 }

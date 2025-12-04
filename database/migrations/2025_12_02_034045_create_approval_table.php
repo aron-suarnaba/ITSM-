@@ -16,10 +16,9 @@ return new class extends Migration
             $table->timestamps();
             $table->string('status');
 
-            $table->string('approved_by_id')->nullable();
-            $table->dateTime('approved_at')->nullable();
-            $table->string('approve_key')->nullable();
+            $table->string('review_key')->nullable();
             $table->string('ticket_number')->nullable();
+            $table->string('approved_by_id')->nullable();
 
             $table->string('approval_rejected_notes')->nullable();
             $table->string('void_at')->nullable();
