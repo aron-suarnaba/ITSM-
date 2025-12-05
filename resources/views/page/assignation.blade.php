@@ -39,7 +39,6 @@
                                         <th>Requested By</th>
                                         <th>Requested Date</th>
                                         <th>Category</th>
-                                        <th>Approved_by_id</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -72,7 +71,6 @@
                                             <td>{{ $approve->last_name ?? 'N/A' }}, {{ $approve->first_name ?? 'N/A' }}</td>
                                             <td>{{ $approve->requested_date ?? 'N/A' }}</td>
                                             <td>{{ $approve->requested_cat ?? 'N/A' }}</td>
-                                            <td>{{ $approve->approved_by_id ?? 'N/A' }}</td>
                                             <td>
                                                 <span class="badge bg-blue text-blue-fg">
                                                     {{ $approve->status ?? 'N/A' }}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Approval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class Assignment extends Controller
 {
@@ -16,7 +17,10 @@ class Assignment extends Controller
 
         $approves = DB::select('EXEC get_approve_request_per_department');
 
-        return view('assignation', compact('approves'));
+        $users = User::whereIn('position', ['IT Specialist', 'System Analyst Programmer'])->get();
+
+
+        return view('assignation', compact('approves', 'users'));
     }
 
     /**

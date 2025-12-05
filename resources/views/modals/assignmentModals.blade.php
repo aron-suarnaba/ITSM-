@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="row mb-3 pb-3 border-bottom">
-                        <div class="col-12 mb-3">
+                        <div class="col-12">
                             <h4 class="h5 text-primary">Request Details</h4>
                         </div>
                         <div class="col-12">
@@ -56,14 +56,41 @@
                         </div>
                     </div>
 
+                    <div class="row pb-3 mb-3 border-bottom">
+                        <div class="col-12">
+                            <h4 class="h5 text-primary">Assignation</h4>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label class="form-label" for="selectPersonnel">Assigned IT Personnel:</label>
+                            <select name="assigned_personnel" id="selectPersonnel" class="form-select"
+                                aria-label="Select IT Personnel" required>
+                                <option value="" selected disabled>Select IT Personnel</option>
+                                @forelse($users as $user)
+                                    <option value="{{ $user->first_name }} {{ $user->last_name }}">{{ $user->last_name }},
+                                        {{ $user->first_name }}</option>
+                                @empty
+                                    <option value="">No IT Personnel is currently active</option>
+                                @endforelse
+                            </select>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="selectPriority" class="form-label" required>Priority</label>
+                            <select name="prioritization" id="selectPriority" class="form-select" aria-label="Priority">
+                                <option value="" selected disabled>Select Priority</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
                             <h4 class="h5 text-primary mb-2">Detailed Description</h4>
-                            <textarea id="modal-assignment-detailed_description"
-                                class="form-control"
+                            <textarea id="modal-assignment-detailed_description" class="form-control"
                                 style="white-space: pre-wrap; min-height: 100px;" rows="7" disabled>
                             </textarea>
-                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -74,13 +101,11 @@
                     </button>
 
                     <div>
-                        <button type="button"
-                                data-bs-dismiss="modal"
-                                data-bs-toggle="modal"
-                                data-bs-target="#AssignmentVoidModal"
-                                class="btn btn-dark me-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        <button type="button" data-bs-dismiss="modal" data-bs-toggle="modal"
+                            data-bs-target="#AssignmentVoidModal" class="btn btn-dark me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
                                 class="icon icon-tabler icons-tabler-outline icon-tabler-circle me-1">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
@@ -89,8 +114,9 @@
                         </button>
 
                         <button type="submit" class="btn btn-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
                                 class="icon icon-tabler icons-tabler-outline icon-tabler-gavel me-1">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path
